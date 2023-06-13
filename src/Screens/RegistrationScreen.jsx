@@ -5,9 +5,9 @@ import { useFonts } from 'expo-font';
 
 
 export default function RegistrationScreen() {
-    const [fontsLoaded] = useFonts({
-    'Roboto': require('./assets/fonts/Roboto.otf'),
-  });
+//     const [fontsLoaded] = useFonts({
+//     'Roboto': require('./assets/fonts/Roboto.otf'),
+//   });
   return (
     <View style={styles.form}>
             <View style={styles.addphoto}>
