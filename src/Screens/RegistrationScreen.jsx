@@ -1,8 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
+
 
 export default function RegistrationScreen() {
+    const [fontsLoaded] = useFonts({
+    'Roboto': require('./assets/fonts/Roboto.otf'),
+  });
   return (
     <View style={styles.form}>
             <View style={styles.addphoto}>
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
         marginTop: 62,
         marginBottom: 32,
         fontWeight: 500,
+        fontFamily: 'Roboto',
         fontSize: 30,
         lineHeight: 35,
         textAlign: 'center',
@@ -71,6 +77,7 @@ const styles = StyleSheet.create({
         borderColor: '#E8E8E8',
         borderRadius: 8,
         color: '#BDBDBD',
+        fontFamily: 'Roboto',
         fontSize: 16,
         lineHeight: 19,
         backgroundColor: '#F6F6F6',  
