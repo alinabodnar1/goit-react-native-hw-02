@@ -21,9 +21,10 @@ export default function RegistrationScreen() {
                 <Pressable style={styles.show} onPress={()=> alert('Show parol')}>
                     <Text>Показати</Text>
                 </Pressable>
-                <Pressable style={styles.signup} onPress={()=> alert('Sign up')}>
-                    <Text>Зареєструватися</Text>
+                <Pressable style={styles.button} onPress={()=> alert('Sign up')}>
+                    <Text style={styles.signup}>Зареєструватися</Text>
                 </Pressable>
+                <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
           </View>
     </View>
   )
@@ -53,11 +54,10 @@ const styles = StyleSheet.create({
         color: 'rgba(255, 108, 0, 1)',
     },
     title: {
-        display: 'block',
         marginTop: 62,
         marginBottom: 32,
         fontWeight: 500,
-        fontFamily: 'Roboto',
+        // fontFamily: 'Roboto',
         fontSize: 30,
         lineHeight: 35,
         textAlign: 'center',
@@ -86,12 +86,12 @@ const styles = StyleSheet.create({
         display: 'block',
         position: 'absolute',
         right: 16,
-        bottom: 110,
+        bottom: 145,
         color: '#1B4371',
         fontSize: 16,
         lineHeight: 19,
     },
-    signup: {
+    button: {
         display: 'inline-block',
         marginTop: 27,
         backgroundColor: '#FF6C00',
@@ -99,6 +99,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 16,
         paddingTop: 16,
+    },
+    signup: {
+        fontSize: 16,
+        lineHeight: 19,
+        textAlign: 'center',
+        color: '#FFFFFF',
+    },
+    signin: {
+        marginTop: 16,
+        fontSize: 16,
+        lineHeight: 19,
+        textAlign: 'center',
+        color: '#1B4371',
     }
 });
 
