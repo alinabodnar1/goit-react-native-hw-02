@@ -1,36 +1,39 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import { View, ImageBackground, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import background from '../images/background.jpg';
 import { Ionicons } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
-
 
 export default function RegistrationScreen() {
-//     const [fontsLoaded] = useFonts({
-//     'Roboto': require('./assets/fonts/Roboto.otf'),
-//   });
-  return (
-    <View style={styles.form}>
-            <View style={styles.addphoto}>
-                <Ionicons name="ios-add-circle-outline" size={24} style={styles.adduser} />
+    return (
+        <ImageBackground source={background} resizeMode='cover' style={styles.image}>
+            <View style={styles.form}>
+                <View style={styles.addphoto}>
+                    <Ionicons name="ios-add-circle-outline" size={24} style={styles.adduser} />
+                </View>
+                <Text style={styles.title}>Реєстрація</Text>
+                <View style={styles.container}>
+                    <TextInput style={styles.input} placeholder="Логін" />
+                    <TextInput style={styles.input} placeholder="Адреса електронної пошти"/>
+                    <TextInput style={styles.input} placeholder="Пароль"/>
+                    <Pressable style={styles.show} onPress={()=> alert('Show parol')}>
+                        <Text>Показати</Text>
+                    </Pressable>
+                    <Pressable style={styles.button} onPress={()=> alert('Sign up')}>
+                        <Text style={styles.signup}>Зареєструватися</Text>
+                    </Pressable>
+                    <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
+                </View>
             </View>
-          <Text style={styles.title}>Реєстрація</Text>
-          <View style={styles.container}>
-               <TextInput style={styles.input} placeholder="Логін" />
-                <TextInput style={styles.input} placeholder="Адреса електронної пошти"/>
-                <TextInput style={styles.input} placeholder="Пароль"/>
-                <Pressable style={styles.show} onPress={()=> alert('Show parol')}>
-                    <Text>Показати</Text>
-                </Pressable>
-                <Pressable style={styles.button} onPress={()=> alert('Sign up')}>
-                    <Text style={styles.signup}>Зареєструватися</Text>
-                </Pressable>
-                <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
-          </View>
-    </View>
+      </ImageBackground>
+    
   )
 }
 
 const styles = StyleSheet.create({
+    image: {
+        flex: 1,
+        justifyContent: 'center',
+    },
     form: {
         marginTop: 263,
         paddingTop: 20,
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
         marginTop: 62,
         marginBottom: 32,
         fontWeight: 500,
-        // fontFamily: 'Roboto',
+        fontFamily: 'GreatVibes',
         fontSize: 30,
         lineHeight: 35,
         textAlign: 'center',
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
         borderColor: '#E8E8E8',
         borderRadius: 8,
         color: '#BDBDBD',
-        fontFamily: 'Roboto',
+        fontFamily: 'GreatVibes',
         fontSize: 16,
         lineHeight: 19,
         backgroundColor: '#F6F6F6',  

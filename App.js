@@ -1,14 +1,22 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
-import background from './src/images/background.jpg';
+import { StyleSheet, View, Text } from 'react-native';
 import RegistrationScreen from './src/Screens/RegistrationScreen';
+import { useFonts } from 'expo-font';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+      'GreatVibes': require('./src/assets/fonts/GreatVibes.otf'),
+  });
+    
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <ImageBackground source={background} resizeMode='cover' style={styles.image}>
-          <RegistrationScreen />
-      </ImageBackground>
+        <RegistrationScreen />
+      
+      <Text style={{ fontFamily: 'GreatVibes', fontSize: 30 }}>GreatVibes</Text>
      </View>
    )
 }
@@ -16,9 +24,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: 'center',
   },
 });
