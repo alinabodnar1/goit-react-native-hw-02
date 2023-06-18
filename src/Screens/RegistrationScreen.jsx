@@ -1,35 +1,50 @@
 import React from 'react';
-import { View, ImageBackground, Text, StyleSheet, TextInput, Pressable } from 'react-native';
 import background from '../images/background.jpg';
 import { Ionicons } from '@expo/vector-icons';
+import RegistrationForm from './RegistrationForm';
+import {
+    View,
+    ImageBackground,
+    Text,
+    StyleSheet,
+    Pressable,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
 
 export default function RegistrationScreen() {
     return (
-        <ImageBackground source={background} resizeMode='cover' style={styles.image}>
-            <View style={styles.form}>
-                <View style={styles.addphoto}>
-                    <Ionicons name="ios-add-circle-outline" size={24} style={styles.adduser} />
-                </View>
-                <Text style={styles.title}>Реєстрація</Text>
-                <View style={styles.container}>
-                    <TextInput style={styles.input} placeholder="Логін" />
-                    <TextInput style={styles.input} placeholder="Адреса електронної пошти"/>
-                    <TextInput style={styles.input} placeholder="Пароль"/>
-                    <Pressable style={styles.show} onPress={()=> alert('Show parol')}>
-                        <Text>Показати</Text>
-                    </Pressable>
-                    <Pressable style={styles.button} onPress={()=> alert('Sign up')}>
-                        <Text style={styles.signup}>Зареєструватися</Text>
-                    </Pressable>
-                    <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
-                </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <ImageBackground source={background} resizeMode='cover' style={styles.image}>
+                    <View style={styles.form}>
+                        <View style={styles.addphoto}>
+                            <Ionicons name="ios-add-circle-outline" size={24} style={styles.adduser} />
+                        </View>
+                        <Text style={styles.title}>Реєстрація</Text>
+
+                        {/* <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} */}
+                        
+                        {/* > */}
+                            <RegistrationForm />
+                        {/* </KeyboardAvoidingView> */}
+        
+                        <Pressable style={styles.button} >
+                            <Text style={styles.signup}>Зареєструватися</Text>
+                        </Pressable>
+                            <Text style={styles.signin}>Вже є акаунт? Увійти</Text>  
+                     </View>       
+                </ImageBackground>
             </View>
-      </ImageBackground>
-    
+         </TouchableWithoutFeedback> 
   )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     image: {
         flex: 1,
         justifyContent: 'center',
@@ -59,43 +74,18 @@ const styles = StyleSheet.create({
     title: {
         marginTop: 62,
         marginBottom: 32,
-        fontWeight: 500,
-        fontFamily: 'GreatVibes',
+        fontFamily: 'Roboto-Light',
         fontSize: 30,
         lineHeight: 35,
         textAlign: 'center',
         letterSpacing: 0.01,
         color: '#212121',
     },
-    container: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: 343,
-    },
-    input: {
-        marginBottom: 16,
-        paddingLeft: 16,
-        height: 50,
-        borderWidth: 1,
-        borderColor: '#E8E8E8',
-        borderRadius: 8,
-        color: '#BDBDBD',
-        fontFamily: 'GreatVibes',
-        fontSize: 16,
-        lineHeight: 19,
-        backgroundColor: '#F6F6F6',  
-    },
-    show: {
-        display: 'block',
-        position: 'absolute',
-        right: 16,
-        bottom: 145,
-        color: '#1B4371',
-        fontSize: 16,
-        lineHeight: 19,
-    },
     button: {
         display: 'inline-block',
+        width: 343,
+        marginLeft: "auto",
+        marginRight: "auto",
         marginTop: 27,
         backgroundColor: '#FF6C00',
         borderRadius: 100,
@@ -107,7 +97,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 19,
         textAlign: 'center',
-        color: '#FFFFFF',
+        color: 'white',
+        fontFamily: 'Roboto-Light',
     },
     signin: {
         marginTop: 16,
@@ -115,6 +106,7 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         textAlign: 'center',
         color: '#1B4371',
+        fontFamily: 'Roboto-Light',
     }
 });
 

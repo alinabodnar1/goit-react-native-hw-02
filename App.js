@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, KeyboardAvoidingView } from 'react-native';
 import RegistrationScreen from './src/Screens/RegistrationScreen';
 import { useFonts } from 'expo-font';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-      'GreatVibes': require('./src/assets/fonts/GreatVibes.otf'),
+      'Roboto-Light': require('./src/assets/fonts/Roboto-Light.ttf'),
   });
     
   if (!fontsLoaded) {
@@ -13,16 +13,11 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-        <RegistrationScreen />
+      <RegistrationScreen />
       
-      <Text style={{ fontFamily: 'GreatVibes', fontSize: 30 }}>GreatVibes</Text>
-     </View>
    )
 }
  
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+// const styles = StyleSheet.create({
+  
+// });
