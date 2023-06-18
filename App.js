@@ -1,23 +1,23 @@
 import React from 'react';
-import { StyleSheet, View, Text, KeyboardAvoidingView } from 'react-native';
 import RegistrationScreen from './src/Screens/RegistrationScreen';
 import { useFonts } from 'expo-font';
+import LoginScreen from './src/Screens/LoginScreen';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
       'Roboto-Light': require('./src/assets/fonts/Roboto-Light.ttf'),
   });
-    
+    const [RobotoMedium] = useFonts({
+      'Roboto-Medium': require('./src/assets/fonts/Roboto-Medium.ttf'),
+  });
   if (!fontsLoaded) {
     return null;
   }
 
   return (
       <RegistrationScreen />
+    // <LoginScreen />
       
    )
 }
  
-// const styles = StyleSheet.create({
-  
-// });

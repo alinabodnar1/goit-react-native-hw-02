@@ -12,49 +12,43 @@ import {
     TouchableWithoutFeedback,
     Keyboard
 } from 'react-native';
+import { commonStyles } from '../commonStyles';
+
 
 export default function RegistrationScreen() {
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <ImageBackground source={background} resizeMode='cover' style={styles.image}>
-                    <View style={styles.form}>
-                        <View style={styles.addphoto}>
-                            <Ionicons name="ios-add-circle-outline" size={24} style={styles.adduser} />
-                        </View>
-                        <Text style={styles.title}>Реєстрація</Text>
-
-                        {/* <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} */}
-                        
-                        {/* > */}
-                            <RegistrationForm />
-                        {/* </KeyboardAvoidingView> */}
-        
-                        <Pressable style={styles.button} >
-                            <Text style={styles.signup}>Зареєструватися</Text>
-                        </Pressable>
-                            <Text style={styles.signin}>Вже є акаунт? Увійти</Text>  
-                     </View>       
-                </ImageBackground>
-            </View>
-         </TouchableWithoutFeedback> 
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={styles.container}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <ImageBackground source={background} resizeMode='cover' style={styles.image}>
+                        <View style={styles.form}>
+                            <View style={styles.addphoto}>
+                                <Ionicons name="ios-add-circle-outline" size={24} style={styles.adduser} />
+                            </View>
+                                <Text style={styles.title}>Реєстрація</Text>  
+                                <RegistrationForm />
+                                <Pressable style={styles.button} >
+                                    <Text style={styles.signup}>Зареєструватися</Text>
+                                </Pressable>
+                                <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
+                            </View>
+                    </ImageBackground>
+                </View>
+            </TouchableWithoutFeedback> 
+        </KeyboardAvoidingView>
   )
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
     image: {
-        flex: 1,
-        justifyContent: 'center',
+       ...commonStyles.image,
     },
     form: {
+        ...commonStyles.form,
         marginTop: 263,
-        paddingTop: 20,
-        backgroundColor: 'white',
-        flex: 1,
-        borderRadius: '25px 25px 0px 0px',
     },
     addphoto: {
         position: 'absolute',
@@ -74,37 +68,19 @@ const styles = StyleSheet.create({
     title: {
         marginTop: 62,
         marginBottom: 32,
-        fontFamily: 'Roboto-Light',
-        fontSize: 30,
-        lineHeight: 35,
-        textAlign: 'center',
-        letterSpacing: 0.01,
-        color: '#212121',
+        ...commonStyles.title,
     },
     button: {
-        display: 'inline-block',
-        width: 343,
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: 27,
-        backgroundColor: '#FF6C00',
-        borderRadius: 100,
-        alignItems: 'center',
-        paddingBottom: 16,
-        paddingTop: 16,
+        ...commonStyles.heroButton,
     },
     signup: {
-        fontSize: 16,
-        lineHeight: 19,
-        textAlign: 'center',
+        ...commonStyles.font,
         color: 'white',
-        fontFamily: 'Roboto-Light',
+        fontFamily: 'Roboto-Medium',
     },
     signin: {
+        ...commonStyles.font,
         marginTop: 16,
-        fontSize: 16,
-        lineHeight: 19,
-        textAlign: 'center',
         color: '#1B4371',
         fontFamily: 'Roboto-Light',
     }
