@@ -45,7 +45,10 @@ const styles = StyleSheet.create({
     },
     loginform: {
         ...commonStyles.form,
-        marginTop: 323,
+        position: "absolute",
+        width: "100%",
+        paddingBottom: 144,
+
     },
     title: {
         ...commonStyles.title,

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     container: {
         ...commonStyles.container,
     },
-      input: {
+    input: {
         ...commonStyles.input,
     },
     show: {

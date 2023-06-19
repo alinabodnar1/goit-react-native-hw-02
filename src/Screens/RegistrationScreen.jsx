@@ -48,7 +48,9 @@ const styles = StyleSheet.create({
     },
     form: {
         ...commonStyles.form,
-        marginTop: 263,
+        position: "absolute",
+        width: "100%",
+        paddingBottom: 144,
     },
     addphoto: {
         position: 'absolute',

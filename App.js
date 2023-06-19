@@ -10,13 +10,13 @@ export default function App() {
     const [RobotoMedium] = useFonts({
       'Roboto-Medium': require('./src/assets/fonts/Roboto-Medium.ttf'),
   });
-  if (!fontsLoaded) {
+  if (!fontsLoaded || !RobotoMedium) {
     return null;
   }
 
   return (
-      <RegistrationScreen />
-    // <LoginScreen />
+      // <RegistrationScreen />
+    <LoginScreen />
       
    )
 }
