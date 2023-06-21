@@ -32,11 +32,9 @@ export default function LoginScreen() {
               <Pressable style={styles.button}>
                 <Text style={styles.signin}>Увійти</Text>
               </Pressable>
-              <Text style={styles.signup}>
-                Немає акаунту?
-                <Text style={{ textDecorationLine: "underline" }}>
-                  Зареєструватися
-                </Text>
+              <Text style={styles.noAccount}>
+                Немає акаунту?{" "}
+                <Text style={styles.signup}>Зареєструватися</Text>
               </Text>
             </View>
           </ImageBackground>
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
     ...commonStyles.form,
     position: "absolute",
     width: "100%",
-    top: 323,
+    bottom: 0,
     paddingBottom: 156,
   },
   title: {
@@ -72,10 +70,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Roboto-Medium",
   },
-  signup: {
+  noAccount: {
     ...commonStyles.font,
     marginTop: 16,
     color: "#1B4371",
     fontFamily: "Roboto-Light",
+  },
+  signup: {
+    textDecorationLine: "underline",
   },
 });
