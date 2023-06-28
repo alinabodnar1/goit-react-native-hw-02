@@ -5,7 +5,6 @@ import {
   ImageBackground,
   Text,
   StyleSheet,
-  Pressable,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
@@ -29,9 +28,7 @@ export default function LoginScreen() {
             <View style={styles.loginform}>
               <Text style={styles.title}>Увійти</Text>
               <Loginform />
-              <Pressable style={styles.button}>
-                <Text style={styles.signin}>Увійти</Text>
-              </Pressable>
+
               <Text style={styles.noAccount}>
                 Немає акаунту?{" "}
                 <Text style={styles.signup}>Зареєструватися</Text>
@@ -61,14 +58,6 @@ const styles = StyleSheet.create({
     ...commonStyles.title,
     marginTop: 32,
     marginBottom: 32,
-  },
-  button: {
-    ...commonStyles.heroButton,
-  },
-  signin: {
-    ...commonStyles.font,
-    color: "white",
-    fontFamily: "Roboto-Medium",
   },
   noAccount: {
     ...commonStyles.font,

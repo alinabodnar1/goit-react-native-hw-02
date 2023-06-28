@@ -7,7 +7,6 @@ import {
   ImageBackground,
   Text,
   StyleSheet,
-  Pressable,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
@@ -37,9 +36,6 @@ export default function RegistrationScreen() {
               </View>
               <Text style={styles.title}>Реєстрація</Text>
               <RegistrationForm />
-              <Pressable style={styles.button}>
-                <Text style={styles.signup}>Зареєструватися</Text>
-              </Pressable>
               <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
             </View>
           </ImageBackground>
@@ -58,7 +54,8 @@ const styles = StyleSheet.create({
   form: {
     ...commonStyles.form,
     position: "absolute",
-    top: 263,
+    // top: 263,
+    bottom: 0,
     width: "100%",
     paddingBottom: 144,
   },
@@ -81,14 +78,6 @@ const styles = StyleSheet.create({
     marginTop: 62,
     marginBottom: 32,
     ...commonStyles.title,
-  },
-  button: {
-    ...commonStyles.heroButton,
-  },
-  signup: {
-    ...commonStyles.font,
-    color: "white",
-    fontFamily: "Roboto-Medium",
   },
   signin: {
     ...commonStyles.font,
