@@ -55,8 +55,8 @@ export const commonStyles = StyleSheet.create({
   },
   showPosition: {
     position: "absolute",
-    right: 16,
-    bottom: 30,
+    right: 12,
+    bottom: 32,
   },
   showText: {
     color: "#1B4371",

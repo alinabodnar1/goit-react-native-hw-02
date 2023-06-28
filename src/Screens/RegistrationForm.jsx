@@ -27,15 +27,18 @@ export default function RegistrationForm() {
               value={props.values.email}
               onChangeText={props.handleChange("email")}
             />
-            <TextInput
-              style={styles.input}
-              placeholder="Пароль"
-              value={props.values.password}
-              onChangeText={props.handleChange("password")}
-            />
-            <Pressable style={styles.show}>
-              <Text style={styles.showText}>Показати</Text>
-            </Pressable>
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Пароль"
+                value={props.values.password}
+                onChangeText={props.handleChange("password")}
+              />
+              <Pressable style={styles.show}>
+                <Text style={styles.showText}>Показати</Text>
+              </Pressable>
+            </View>
+
             <Pressable style={styles.button}>
               <Text style={styles.signup} onPress={props.handleSubmit}>
                 Зареєструватися

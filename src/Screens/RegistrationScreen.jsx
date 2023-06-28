@@ -18,6 +18,7 @@ export default function RegistrationScreen() {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
+      keyboardVerticalOffset={-250}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
   form: {
     ...commonStyles.form,
     position: "absolute",
-    // top: 263,
     bottom: 0,
     width: "100%",
     paddingBottom: 144,
