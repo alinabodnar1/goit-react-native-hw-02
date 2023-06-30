@@ -1,5 +1,5 @@
 import React from "react";
-import emptyPhoto from "./CreatePostsScreen/img/empty-photo.jpg";
+import emptyPhoto from "../images/empty-photo.jpg";
 import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,

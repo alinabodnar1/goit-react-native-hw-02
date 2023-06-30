@@ -1,5 +1,5 @@
 import React from "react";
-import emptyPhoto from "./CreatePostsScreen/img/empty-photo.jpg";
+import emptyPhoto from "../images/empty-photo.jpg";
 import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { commonStyles } from "../commonStyles";
 
-export default function CreatePostsScreen() {
+export default function ProfileScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
