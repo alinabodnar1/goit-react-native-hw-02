@@ -11,7 +11,8 @@ export const commonStyles = StyleSheet.create({
     lineHeight: 19,
     textAlign: "center",
   },
-  title: {
+  // Registration, Login
+  title: { 
     fontFamily: "Roboto-Medium",
     fontSize: 30,
     lineHeight: 35,
@@ -62,4 +63,24 @@ export const commonStyles = StyleSheet.create({
     color: "#1B4371",
     fontFamily: "Roboto-Light",
   },
+// CreatePostsScreen
+  zeroLeftPosition: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+  },
+// CommentsScreen
+  commentWrapper: {
+    width: 300,
+    marginBottom: 24,
+    padding: 16,
+    backgroundColor: "#00000008",
+    borderRadius: 6,
+  },
+  dateAndTime: {
+    marginTop: 8,
+    fontSize: 10,
+    color: "#BDBDBD",
+    textAlign: "right",
+  }
 });

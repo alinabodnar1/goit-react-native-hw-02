@@ -1,7 +1,6 @@
 import React from "react";
 import emptyPhoto from "../images/empty-photo.jpg";
-import { Ionicons, EvilIcons } from "@expo/vector-icons";
-import RegistrationForm from "./RegistrationForm";
+import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -11,63 +10,54 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Pressable,
-  Button,
   TextInput,
 } from "react-native";
 import { commonStyles } from "../commonStyles";
 
 export default function CreatePostsScreen() {
   return (
-    // <KeyboardAvoidingView
-    // behavior={Platform.OS === "ios" ? "padding" : "height"}
-    // style={styles.container}
-    // keyboardVerticalOffset={-250}
-    // >
-    // <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Ionicons name="arrow-back" size={24} style={styles.back} />
-        <Text style={styles.title}>Створити публікацію</Text>
-      </View>
-      <View style={styles.wrapper}>
-        <Image style={styles.emptyPhoto} source={emptyPhoto} />
-        <Pressable>
-          <Text style={styles.loadPhoto}>Завантажте фото</Text>
-        </Pressable>
-        <TextInput
-          style={styles.inputName}
-          placeholder="Назва..."
-        />
-        <View >
-           <EvilIcons
-            name="location"
-            size={24}
-            style={styles.locationIcon}
-          />
-          <TextInput
-          style={styles.location}
-          placeholder="Місцевість..."
-          />
-        
-     
-    </View>
-       
-       
-      
-      </View>
-    </View>
-    // </TouchableWithoutFeedback>
-    // </KeyboardAvoidingView>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Ionicons name="arrow-back" size={24} style={styles.back} />
+            <Text style={styles.title}>Створити публікацію</Text>
+          </View>
+          <View style={styles.wrapper}>
+            <Image style={styles.emptyPhoto} source={emptyPhoto} />
+            <Pressable>
+              <Text style={styles.loadPhoto}>Завантажте фото</Text>
+            </Pressable>
+            <TextInput style={styles.inputName} placeholder="Назва..." />
+            <View style={styles.locationWraper}>
+              <EvilIcons
+                name="location"
+                size={24}
+                style={styles.locationIcon}
+              />
+              <TextInput style={styles.location} placeholder="Місцевість..." />
+            </View>
+            <Pressable style={styles.button}>
+              <Text style={styles.publish}>Опубліковати</Text>
+            </Pressable>
+            <Pressable style={styles.delete}>
+              <AntDesign name="delete" size={24} color="#BDBDBD" />
+            </Pressable>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 44,
-    paddingBottom: 34,
   },
   header: {
-    marginTop: 10,
+    paddingTop: 44,
     borderBottomWidth: 0.3,
     borderBottomColor: "E5E5E5",
   },
@@ -107,18 +97,39 @@ const styles = StyleSheet.create({
     borderBottomColor: "#E8E8E8",
     paddingBottom: 15,
   },
+  locationWraper: {
+    paddingBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E8E8E8",
+  },
   location: {
     ...commonStyles.font,
     textAlign: "left",
     marginLeft: 22,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E8E8E8",
-    paddingBottom: 15,
   },
   locationIcon: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    color: 'gray',
-  }
+    ...commonStyles.zeroLeftPosition,
+    color: "gray",
+  },
+  button: {
+    ...commonStyles.heroButton,
+    marginTop: 32,
+    marginBottom: 120,
+    backgroundColor: "#F6F6F6",
+  },
+  publish: {
+    ...commonStyles.font,
+    color: "#BDBDBD",
+  },
+  delete: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "#F6F6F6",
+    textAlign: "center",
+    borderRadius: 100,
+    paddingBottom: 8,
+    paddingTop: 8,
+    paddingLeft: 23,
+    paddingRight: 23,
+  },
 });

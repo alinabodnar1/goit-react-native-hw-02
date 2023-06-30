@@ -7,6 +7,7 @@ import Home from "./src/Screens/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import CreatePostsScreen from "./src/Screens/CreatePostsScreen";
+import CommentsScreen from './src/Screens/CommentsScreen/CommentsScreen';
 
 const MainStack = createStackNavigator();
 
@@ -30,6 +31,7 @@ export default function App() {
     //   </MainStack.Navigator>
     // </NavigationContainer>
     // <RegistrationScreen />
-    <CreatePostsScreen />
+    // <CreatePostsScreen />
+    <CommentsScreen />
   );
 }
