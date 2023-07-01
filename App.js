@@ -32,8 +32,8 @@ export default function App() {
     //   </MainStack.Navigator>
     // </NavigationContainer>
     // <RegistrationScreen />
-    <CreatePostsScreen />
+    // <CreatePostsScreen />
     // <CommentsScreen />
-    // <ProfileScreen />
+    <ProfileScreen />
   );
 }

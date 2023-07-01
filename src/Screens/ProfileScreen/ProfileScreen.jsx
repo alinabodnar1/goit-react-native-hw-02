@@ -1,5 +1,5 @@
 import React from "react";
-import emptyPhoto from "../images/empty-photo.jpg";
+import publicationPhoto from "./img/publicationPhoto.jpg";
 import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
@@ -12,7 +12,7 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import { commonStyles } from "../commonStyles";
+import { commonStyles } from "../../commonStyles";
 
 export default function ProfileScreen() {
   return (
@@ -27,9 +27,9 @@ export default function ProfileScreen() {
             <Text style={styles.title}>Створити публікацію</Text>
           </View>
           <View style={styles.wrapper}>
-            <Image style={styles.emptyPhoto} source={emptyPhoto} />
+            <Image style={styles.publicationPhoto} source={publicationPhoto} />
             <Pressable>
-              <Text style={styles.loadPhoto}>Завантажте фото</Text>
+              <Text style={styles.loadPhoto}>Редагувати фото</Text>
             </Pressable>
             <TextInput style={styles.inputName} placeholder="Назва..." />
             <View style={styles.locationWraper}>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
   },
-  emptyPhoto: {
+  publicationPhoto: {
     marginTop: 32,
     marginBottom: 8,
     width: 343,
@@ -115,11 +115,11 @@ const styles = StyleSheet.create({
     ...commonStyles.heroButton,
     marginTop: 32,
     marginBottom: 120,
-    backgroundColor: "#F6F6F6",
+    backgroundColor: "#FF6C00",
   },
   publish: {
     ...commonStyles.font,
-    color: "#BDBDBD",
+    color: "#FFFFFF",
   },
   delete: {
     marginLeft: "auto",
