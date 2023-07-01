@@ -1,5 +1,4 @@
 import React from "react";
-import emptyPhoto from "./CreatePostsScreen/img/empty-photo.jpg";
 import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
@@ -23,30 +22,46 @@ export default function PostsScreen() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <Ionicons name="arrow-back" size={24} style={styles.back} />
             <Text style={styles.title}>Публікації</Text>
+            <Image  style={styles.arrow} source={require("./img/log-out.png")}/>
           </View>
-          <View style={styles.wrapper}>
-            <Image style={styles.emptyPhoto} source={emptyPhoto} />
-            <Pressable>
-              <Text style={styles.loadPhoto}>Завантажте фото</Text>
-            </Pressable>
-            <TextInput style={styles.inputName} placeholder="Назва..." />
-            <View style={styles.locationWraper}>
+
+          <View style={styles.main}>
+            <View style={styles.wrapper}>
+            <Image style={styles.avatar} source={require("./img/avatar.jpg")} />
+            <View style={styles.nameEmail}>
+              <Text style={styles.name}>Natali Romanova</Text>
+              <Text style={styles.email}>email@example.com</Text>
+            </View>
+          </View>
+
+          <Image source={require("./img/publicationPhoto.jpg")} />
+            <Text style={styles.publicationTitle}>Ліс</Text>
+
+            <View style={styles.publicationInfo}>
+              <EvilIcons name="comment" size={24} color="#BDBDBD" />
+              <Text style={styles.commentsNumber}>0</Text>
               <EvilIcons
                 name="location"
                 size={24}
                 style={styles.locationIcon}
               />
-              <TextInput style={styles.location} placeholder="Місцевість..." />
+              <Text style={styles.location}>Ivano-Frankivs'k Region, Ukraine</Text>
             </View>
-            <Pressable style={styles.button}>
+          
+              
+         
+          </View>
+          
+
+            
+            {/* <Pressable style={styles.button}>
               <Text style={styles.publish}>Опубліковати</Text>
             </Pressable>
             <Pressable style={styles.delete}>
               <AntDesign name="delete" size={24} color="#BDBDBD" />
-            </Pressable>
-          </View>
+            </Pressable>  */}
+          
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
@@ -61,75 +76,87 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderBottomColor: "E5E5E5",
   },
-  back: {
-    color: "#808080",
-    position: "absolute",
-    bottom: 5,
-    left: 16,
-  },
   title: {
     ...commonStyles.font,
     paddingTop: 11,
     paddingBottom: 11,
   },
-  wrapper: {
+  arrow: {
+    position: "absolute",
+    bottom: 10,
+    right: 16,
+  },
+  main: {
     paddingLeft: 24,
     paddingRight: 24,
   },
-  emptyPhoto: {
-    marginTop: 32,
-    marginBottom: 8,
-    width: 343,
-    height: 240,
-    borderRadius: 8,
-  },
-  loadPhoto: {
-    ...commonStyles.font,
-    textAlign: "left",
-    color: "#BDBDBD",
-  },
-  inputName: {
-    ...commonStyles.font,
-    textAlign: "left",
-    marginTop: 48,
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+   marginTop: 32,
     marginBottom: 32,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E8E8E8",
-    paddingBottom: 15,
   },
-  locationWraper: {
-    paddingBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E8E8E8",
+  avatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 16,
+  },
+  nameEmail: {
+    marginLeft: 8,
+  },
+  name: {
+    ...commonStyles.font,
+    fontSize: 13,
+    fontWeight: 'bold',
+  },
+  email: {
+    fontSize: 11,
+    color: '#212121',
+  },
+  publicationTitle: {
+    fontWeight: 'bold',
+    marginTop: 8,
+    marginBottom: 8,
+    color: '#212121',
+  },
+  publicationInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    
+  },
+  commentsNumber: {
+    color: '#BDBDBD',
+    marginRight: 45,
+  },
+
+  locationIcon: {
+    color: "#BDBDBD",
   },
   location: {
     ...commonStyles.font,
-    textAlign: "left",
-    marginLeft: 22,
+    color: '#212121',
+
+    textDecorationLine: 'underline',
   },
-  locationIcon: {
-    ...commonStyles.zeroLeftPosition,
-    color: "gray",
-  },
-  button: {
-    ...commonStyles.heroButton,
-    marginTop: 32,
-    marginBottom: 120,
-    backgroundColor: "#F6F6F6",
-  },
-  publish: {
-    ...commonStyles.font,
-    color: "#BDBDBD",
-  },
-  delete: {
-    marginLeft: "auto",
-    marginRight: "auto",
-    backgroundColor: "#F6F6F6",
-    textAlign: "center",
-    borderRadius: 100,
-    paddingBottom: 8,
-    paddingTop: 8,
-    paddingLeft: 23,
-    paddingRight: 23,
-  },
+  // button: {
+  //   ...commonStyles.heroButton,
+  //   marginTop: 32,
+  //   marginBottom: 120,
+  //   backgroundColor: "#F6F6F6",
+  // },
+  // publish: {
+  //   ...commonStyles.font,
+  //   color: "#BDBDBD",
+  // },
+  // delete: {
+  //   marginLeft: "auto",
+  //   marginRight: "auto",
+  //   backgroundColor: "#F6F6F6",
+  //   textAlign: "center",
+  //   borderRadius: 100,
+  //   paddingBottom: 8,
+  //   paddingTop: 8,
+  //   paddingLeft: 23,
+  //   paddingRight: 23,
+  // },
 });

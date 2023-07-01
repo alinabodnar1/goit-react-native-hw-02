@@ -6,7 +6,7 @@ import LoginScreen from "./src/Screens/LoginScreen";
 import Home from "./src/Screens/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import CreatePostsScreen from "./src/Screens/CreatePostsScreen";
+import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
 import CommentsScreen from './src/Screens/CommentsScreen/CommentsScreen';
 import ProfileScreen from "./src/Screens/ProfileScreen/ProfileScreen";
 import PostsScreen from "./src/Screens/PostsScreen/PostsScreen";

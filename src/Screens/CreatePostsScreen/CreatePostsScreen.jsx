@@ -1,5 +1,5 @@
 import React from "react";
-import emptyPhoto from "../images/empty-photo.jpg";
+import emptyPhoto from "./img/empty-photo.jpg";
 import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
@@ -12,7 +12,7 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import { commonStyles } from "../commonStyles";
+import { commonStyles } from "../../commonStyles";
 
 export default function CreatePostsScreen() {
   return (
