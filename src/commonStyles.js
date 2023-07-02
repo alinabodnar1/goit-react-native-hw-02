@@ -12,7 +12,7 @@ export const commonStyles = StyleSheet.create({
     textAlign: "center",
   },
   // Registration, Login
-  title: { 
+  title: {
     fontFamily: "Roboto-Medium",
     fontSize: 30,
     lineHeight: 35,
@@ -52,7 +52,6 @@ export const commonStyles = StyleSheet.create({
     color: "#212121",
     backgroundColor: "#F6F6F6",
     borderColor: "#E8E8E8",
-
   },
   showPosition: {
     position: "absolute",
@@ -63,13 +62,25 @@ export const commonStyles = StyleSheet.create({
     color: "#1B4371",
     fontFamily: "Roboto-Light",
   },
-// CreatePostsScreen
+  // CreatePostsScreen
+  header: {
+    paddingTop: 44,
+    borderBottomWidth: 0.3,
+    borderBottomColor: "#212121",
+  },
+  headerTitle: {
+    fontSize: 16,
+    lineHeight: 19,
+    textAlign: "center",
+    paddingTop: 11,
+    paddingBottom: 11,
+  },
   zeroLeftPosition: {
     position: "absolute",
     top: 0,
     left: 0,
   },
-// CommentsScreen
+  // CommentsScreen
   commentWrapper: {
     width: 300,
     marginBottom: 24,
@@ -82,5 +93,15 @@ export const commonStyles = StyleSheet.create({
     fontSize: 10,
     color: "#BDBDBD",
     textAlign: "right",
-  }
+  },
+  back: {
+    color: "#808080",
+    position: "absolute",
+    bottom: 5,
+    left: 16,
+  },
+  wrapper: {
+    paddingLeft: 24,
+    paddingRight: 24,
+  },
 });

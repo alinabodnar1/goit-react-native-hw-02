@@ -1,41 +1,35 @@
 import React from "react";
-import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
+import { Feather, EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
   Text,
   StyleSheet,
   Image,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Pressable,
-  TextInput,
+  Pressable
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
 
 export default function PostsScreen() {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.title}>Публікації</Text>
-            <Image  style={styles.arrow} source={require("./img/log-out.png")}/>
+        <View style={{flex: 1}}>
+          <View style={commonStyles.header}>
+            <Text style={commonStyles.headerTitle}>Публікації</Text>
+            <Image style={styles.arrow} source={require("./img/log-out.png")} />
           </View>
 
           <View style={styles.main}>
             <View style={styles.wrapper}>
-            <Image style={styles.avatar} source={require("./img/avatar.jpg")} />
-            <View style={styles.nameEmail}>
-              <Text style={styles.name}>Natali Romanova</Text>
-              <Text style={styles.email}>email@example.com</Text>
+              <Image
+                style={styles.avatar}
+                source={require("./img/avatar.jpg")}
+              />
+              <View style={styles.nameEmail}>
+                <Text style={styles.name}>Natali Romanova</Text>
+                <Text style={styles.email}>email@example.com</Text>
+              </View>
             </View>
-          </View>
 
-          <Image source={require("./img/publicationPhoto.jpg")} />
+            <Image source={require("./img/publicationPhoto.jpg")} />
             <Text style={styles.publicationTitle}>Ліс</Text>
 
             <View style={styles.publicationInfo}>
@@ -46,44 +40,27 @@ export default function PostsScreen() {
                 size={24}
                 style={styles.locationIcon}
               />
-              <Text style={styles.location}>Ivano-Frankivs'k Region, Ukraine</Text>
+              <Text style={styles.location}>
+                Ivano-Frankivs'k Region, Ukraine
+              </Text>
             </View>
-          
-              
-         
-          </View>
-          
-
-            
-            {/* <Pressable style={styles.button}>
-              <Text style={styles.publish}>Опубліковати</Text>
-            </Pressable>
-            <Pressable style={styles.delete}>
-              <AntDesign name="delete" size={24} color="#BDBDBD" />
-            </Pressable>  */}
-          
+        <Image style={styles.nextPublication} source={require("./img/sunset.jpg")} />
+      </View>
+      {/* tabNavigation */}
+        <View style={styles.tabNavigation}>
+          <AntDesign name="appstore-o" size={24} color="#212121" />
+          <Pressable style={styles.plus}>
+              <AntDesign name="plus" size={20} color="#FFFFFF" />
+          </Pressable>
+          <Feather name="user" size={24} color="#212121" />
+          </View>    
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    paddingTop: 44,
-    borderBottomWidth: 0.3,
-    borderBottomColor: "E5E5E5",
-  },
-  title: {
-    ...commonStyles.font,
-    paddingTop: 11,
-    paddingBottom: 11,
-  },
   arrow: {
     position: "absolute",
-    bottom: 10,
+    bottom: 9,
     right: 16,
   },
   main: {
@@ -91,9 +68,9 @@ const styles = StyleSheet.create({
     paddingRight: 24,
   },
   wrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-   marginTop: 32,
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 32,
     marginBottom: 32,
   },
   avatar: {
@@ -107,25 +84,25 @@ const styles = StyleSheet.create({
   name: {
     ...commonStyles.font,
     fontSize: 13,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   email: {
     fontSize: 11,
-    color: '#212121',
+    color: "#212121",
   },
   publicationTitle: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 8,
     marginBottom: 8,
-    color: '#212121',
+    color: "#212121",
   },
   publicationInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 34,
   },
   commentsNumber: {
-    color: '#BDBDBD',
+    color: "#BDBDBD",
     marginRight: 45,
   },
 
@@ -134,29 +111,37 @@ const styles = StyleSheet.create({
   },
   location: {
     ...commonStyles.font,
-    color: '#212121',
+    color: "#212121",
 
-    textDecorationLine: 'underline',
+    textDecorationLine: "underline",
   },
-  // button: {
-  //   ...commonStyles.heroButton,
-  //   marginTop: 32,
-  //   marginBottom: 120,
-  //   backgroundColor: "#F6F6F6",
-  // },
-  // publish: {
-  //   ...commonStyles.font,
-  //   color: "#BDBDBD",
-  // },
-  // delete: {
-  //   marginLeft: "auto",
-  //   marginRight: "auto",
-  //   backgroundColor: "#F6F6F6",
-  //   textAlign: "center",
-  //   borderRadius: 100,
-  //   paddingBottom: 8,
-  //   paddingTop: 8,
-  //   paddingLeft: 23,
-  //   paddingRight: 23,
-  // },
+  nextPublication: {
+    overflow: "hidden",
+    zIndex: 1,
+  },
+  tabNavigation: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: 'space-evenly',
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    minWidth: 390,
+    backgroundColor: '#FFFFFF',
+    marginLeft: 'auto',
+   marginRight: 'auto',
+    zIndex: 11,
+    borderTopWidth: 0.5,
+    borderColor: '#212121',
+    paddingTop: 10,
+    paddingBottom: 44,
+  },
+  plus: {
+    backgroundColor: "#FF6C00",
+    borderRadius: 100,
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
+  },
 });

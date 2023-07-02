@@ -35,7 +35,7 @@ export default function App() {
     // <RegistrationScreen />
     // <CreatePostsScreen />
     // <CommentsScreen />
-    // <ProfileScreen />
-    <PostsScreen />
+    <ProfileScreen />
+    // <PostsScreen />
   );
 }

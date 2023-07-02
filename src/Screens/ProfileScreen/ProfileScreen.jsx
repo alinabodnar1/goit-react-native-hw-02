@@ -1,6 +1,6 @@
 import React from "react";
-import publicationPhoto from "./img/publicationPhoto.jpg";
 import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
+import camera from "./img/camera.png";
 import {
   View,
   Text,
@@ -18,16 +18,21 @@ export default function ProfileScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
+      style={{ flex: 1 }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Ionicons name="arrow-back" size={24} style={styles.back} />
-            <Text style={styles.title}>Створити публікацію</Text>
+        <View style={{ flex: 1 }}>
+          <View style={commonStyles.header}>
+            <Ionicons name="arrow-back" size={24} style={commonStyles.back} />
+            <Text style={commonStyles.headerTitle}>Створити публікацію</Text>
           </View>
-          <View style={styles.wrapper}>
-            <Image style={styles.publicationPhoto} source={publicationPhoto} />
+          <View style={commonStyles.wrapper}>
+            <Image
+              style={styles.publicationPhoto}
+              source={require("./img/publicationPhoto.jpg")}
+            />
+            <Image style={styles.camera} source={camera} />
+
             <Pressable>
               <Text style={styles.loadPhoto}>Редагувати фото</Text>
             </Pressable>
@@ -53,35 +58,17 @@ export default function ProfileScreen() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    paddingTop: 44,
-    borderBottomWidth: 0.3,
-    borderBottomColor: "E5E5E5",
-  },
-  back: {
-    color: "#808080",
-    position: "absolute",
-    bottom: 5,
-    left: 16,
-  },
-  title: {
-    ...commonStyles.font,
-    paddingTop: 11,
-    paddingBottom: 11,
-  },
-  wrapper: {
-    paddingLeft: 24,
-    paddingRight: 24,
-  },
   publicationPhoto: {
     marginTop: 32,
     marginBottom: 8,
     width: 343,
     height: 240,
     borderRadius: 8,
+  },
+  camera: {
+    position: "absolute",
+    top: 120,
+    left: 165,
   },
   loadPhoto: {
     ...commonStyles.font,
