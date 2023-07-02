@@ -16,15 +16,15 @@ export default function LoginScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
+      style={{ flex: 1 }}
       keyboardVerticalOffset={-250}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
+        <View style={{ flex: 1 }}>
           <ImageBackground
             source={background}
             resizeMode="cover"
-            style={styles.image}
+            style={commonStyles.image}
           >
             <View style={styles.loginform}>
               <Text style={styles.title}>Увійти</Text>
@@ -42,18 +42,12 @@ export default function LoginScreen() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    ...commonStyles.image,
-  },
   loginform: {
     ...commonStyles.form,
     position: "absolute",
     width: "100%",
     bottom: 0,
-    paddingBottom: 156,
+    paddingBottom: 147,
   },
   title: {
     ...commonStyles.title,

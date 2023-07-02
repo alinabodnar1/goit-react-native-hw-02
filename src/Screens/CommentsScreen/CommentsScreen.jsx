@@ -18,10 +18,10 @@ export default function CommentsScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{flex: 1}}
+      style={{ flex: 1 }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <View style={commonStyles.header}>
             <Ionicons name="arrow-back" size={24} style={commonStyles.back} />
             <Text style={commonStyles.headerTitle}>Коментарі</Text>

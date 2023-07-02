@@ -40,6 +40,13 @@ export const commonStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
   },
+  avatar: {
+    position: "absolute",
+    width: 120,
+    height: 120,
+    left: 128,
+    top: -60,
+  },
   input: {
     marginBottom: 16,
     paddingLeft: 16,
@@ -103,5 +110,59 @@ export const commonStyles = StyleSheet.create({
   wrapper: {
     paddingLeft: 24,
     paddingRight: 24,
+  },
+  // PostsScreen
+  publicationTitle: {
+    fontWeight: "bold",
+    marginTop: 8,
+    marginBottom: 8,
+    color: "#212121",
+  },
+  publicationInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 34,
+  },
+  commentsNumber: {
+    color: "#BDBDBD",
+    fontSize: 16,
+    lineHeight: 19,
+  },
+  locationIcon: {
+    color: "#BDBDBD",
+  },
+  location: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: "#212121",
+    textDecorationLine: "underline",
+  },
+  row: {
+    flexDirection: "row",
+  },
+  tabNavigation: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    minWidth: 390,
+    backgroundColor: "#FFFFFF",
+    marginLeft: "auto",
+    marginRight: "auto",
+    zIndex: 11,
+    borderTopWidth: 0.5,
+    borderColor: "#212121",
+    paddingTop: 10,
+    paddingBottom: 44,
+  },
+  plus: {
+    backgroundColor: "#FF6C00",
+    borderRadius: 100,
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
   },
 });

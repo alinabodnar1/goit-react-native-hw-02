@@ -17,18 +17,18 @@ export default function RegistrationScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
+      style={{ flex: 1 }}
       keyboardVerticalOffset={-250}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
+        <View style={{ flex: 1 }}>
           <ImageBackground
             source={background}
             resizeMode="cover"
-            style={styles.image}
+            style={commonStyles.image}
           >
             <View style={styles.form}>
-              <View style={styles.addphoto}>
+              <View style={styles.avatar}>
                 <Ionicons
                   name="ios-add-circle-outline"
                   size={24}
@@ -46,25 +46,15 @@ export default function RegistrationScreen() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    ...commonStyles.image,
-  },
   form: {
     ...commonStyles.form,
     position: "absolute",
     bottom: 0,
     width: "100%",
-    paddingBottom: 144,
+    paddingBottom: 147,
   },
-  addphoto: {
-    position: "absolute",
-    width: 120,
-    height: 120,
-    left: 128,
-    top: -60,
+  avatar: {
+    ...commonStyles.avatar,
     backgroundColor: "#F6F6F6",
     borderRadius: 16,
   },

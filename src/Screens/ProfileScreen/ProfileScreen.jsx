@@ -1,6 +1,11 @@
 import React from "react";
-import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
-import camera from "./img/camera.png";
+import {
+  SimpleLineIcons,
+  EvilIcons,
+  AntDesign,
+  Feather,
+} from "@expo/vector-icons";
+import background from "../../images/background.jpg";
 import {
   View,
   Text,
@@ -10,7 +15,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Pressable,
-  TextInput,
+  ImageBackground,
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
 
@@ -22,101 +27,107 @@ export default function ProfileScreen() {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
-          <View style={commonStyles.header}>
-            <Ionicons name="arrow-back" size={24} style={commonStyles.back} />
-            <Text style={commonStyles.headerTitle}>Створити публікацію</Text>
-          </View>
-          <View style={commonStyles.wrapper}>
-            <Image
-              style={styles.publicationPhoto}
-              source={require("./img/publicationPhoto.jpg")}
-            />
-            <Image style={styles.camera} source={camera} />
-
-            <Pressable>
-              <Text style={styles.loadPhoto}>Редагувати фото</Text>
-            </Pressable>
-            <TextInput style={styles.inputName} placeholder="Назва..." />
-            <View style={styles.locationWraper}>
-              <EvilIcons
-                name="location"
-                size={24}
-                style={styles.locationIcon}
+          <ImageBackground
+            source={background}
+            resizeMode="cover"
+            style={commonStyles.image}
+          >
+            <View style={styles.profileWrapper}>
+              <Image
+                style={styles.changeUser}
+                source={require("./img/add.png")}
               />
-              <TextInput style={styles.location} placeholder="Місцевість..." />
+              <Image
+                style={commonStyles.avatar}
+                source={require("./img/avatar.png")}
+              />
+              <Image
+                style={styles.logout}
+                source={require("./img/log-out.png")}
+              />
+              <Text style={styles.title}>Natali Romanova</Text>
+
+              <View style={commonStyles.wrapper}>
+                <Image source={require("./img/publicationPhoto.jpg")} />
+                <Text style={commonStyles.publicationTitle}>Ліс</Text>
+
+                <View style={styles.publicationInfo}>
+                  <View style={commonStyles.row}>
+                    <Image source={require("./img/commentsIcon.png")} />
+                    <Text style={styles.commentsNumber}>8</Text>
+                  </View>
+
+                  <View style={styles.likes}>
+                    <SimpleLineIcons name="like" size={20} color="#FF6C00" />
+                    <Text style={styles.numberLikes}>153</Text>
+                  </View>
+                  <View style={commonStyles.row}>
+                    <EvilIcons
+                      name="location"
+                      size={28}
+                      style={commonStyles.locationIcon}
+                    />
+                    <Text style={styles.location}>Ukraine</Text>
+                  </View>
+                </View>
+              </View>
             </View>
-            <Pressable style={styles.button}>
-              <Text style={styles.publish}>Опубліковати</Text>
-            </Pressable>
-            <Pressable style={styles.delete}>
-              <AntDesign name="delete" size={24} color="#BDBDBD" />
-            </Pressable>
-          </View>
+            {/* tabNavigation */}
+            <View style={commonStyles.tabNavigation}>
+              <AntDesign name="appstore-o" size={24} color="#212121" />
+              <Pressable style={commonStyles.plus}>
+                <Feather name="user" size={24} color="#FFFFFF" />
+              </Pressable>
+              <AntDesign name="plus" size={20} color="#212121" />
+            </View>
+          </ImageBackground>
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
-  publicationPhoto: {
-    marginTop: 32,
-    marginBottom: 8,
-    width: 343,
-    height: 240,
-    borderRadius: 8,
+  profileWrapper: {
+    flex: 1,
+    marginTop: 147,
+    backgroundColor: "white",
+    borderRadius: "25px 25px 0px 0px",
   },
-  camera: {
+  changeUser: {
     position: "absolute",
-    top: 120,
-    left: 165,
+    right: 126,
+    top: 20,
+    zIndex: 9,
   },
-  loadPhoto: {
-    ...commonStyles.font,
-    textAlign: "left",
-    color: "#BDBDBD",
+  logout: {
+    position: "absolute",
+    top: 22,
+    right: 16,
   },
-  inputName: {
-    ...commonStyles.font,
-    textAlign: "left",
-    marginTop: 48,
+  title: {
+    ...commonStyles.title,
+    marginTop: 92,
     marginBottom: 32,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E8E8E8",
-    paddingBottom: 15,
   },
-  locationWraper: {
-    paddingBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E8E8E8",
+  publicationInfo: {
+    ...commonStyles.row,
+    marginBottom: 32,
+  },
+  commentsNumber: {
+    ...commonStyles.commentsNumber,
+    color: "#212121",
+  },
+  likes: {
+    ...commonStyles.row,
+    marginLeft: 24,
+  },
+  numberLikes: {
+    ...commonStyles.commentsNumber,
+    marginLeft: 4,
+    marginRight: 140,
+    color: "#212121",
   },
   location: {
-    ...commonStyles.font,
-    textAlign: "left",
-    marginLeft: 22,
-  },
-  locationIcon: {
-    ...commonStyles.zeroLeftPosition,
-    color: "gray",
-  },
-  button: {
-    ...commonStyles.heroButton,
-    marginTop: 32,
-    marginBottom: 120,
-    backgroundColor: "#FF6C00",
-  },
-  publish: {
-    ...commonStyles.font,
-    color: "#FFFFFF",
-  },
-  delete: {
-    marginLeft: "auto",
-    marginRight: "auto",
-    backgroundColor: "#F6F6F6",
-    textAlign: "center",
-    borderRadius: 100,
-    paddingBottom: 8,
-    paddingTop: 8,
-    paddingLeft: 23,
-    paddingRight: 23,
+    ...commonStyles.location,
   },
 });

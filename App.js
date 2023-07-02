@@ -33,6 +33,7 @@ export default function App() {
     //   </MainStack.Navigator>
     // </NavigationContainer>
     // <RegistrationScreen />
+    // <LoginScreen />
     // <CreatePostsScreen />
     // <CommentsScreen />
     <ProfileScreen />
