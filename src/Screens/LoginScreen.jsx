@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Button,
+  Pressable,
 } from "react-native";
 import Loginform from "./Loginform";
 import { commonStyles } from "../commonStyles";
@@ -38,12 +38,12 @@ export default function LoginScreen() {
               <Text style={styles.noAccount}>
                 Немає акаунту?{" "}
                 <Text style={styles.signup}>
-                  <TouchableOpacity
+                  <Pressable
                     style={styles.signup}
-                    onPress={() => navigation.navigate("RegistrationScreen")}
+                    onPress={() => navigation.navigate("Registration")}
                   >
                     <Text>Зареєструватися</Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 </Text>
               </Text>
             </View>

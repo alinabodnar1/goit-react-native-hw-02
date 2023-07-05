@@ -38,7 +38,7 @@ export default function Loginform() {
 
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('RegistrationScreen')}
+          onPress={() => navigation.navigate('Home', { screen: 'PostsScreen' })}
         >
           <Text style={styles.signin}>Увійти</Text>
         </Pressable>

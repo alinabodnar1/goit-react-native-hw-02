@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Pressable,
 } from "react-native";
 import { commonStyles } from "../commonStyles";
 import { useNavigation } from "@react-navigation/native";
@@ -43,12 +44,12 @@ export default function RegistrationScreen() {
 
               <Text style={styles.signin}>
                 Вже є акаунт?
-                <TouchableOpacity
+                <Pressable
                   style={styles.signin}
-                  onPress={() => navigation.navigate("LoginScreen")}
+                  onPress={() => navigation.navigate("Login")}
                 >
                   <Text>Увійти</Text>
-                </TouchableOpacity>
+                </Pressable>
               </Text>
             </View>
           </ImageBackground>

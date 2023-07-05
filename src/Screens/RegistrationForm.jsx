@@ -45,7 +45,7 @@ export default function RegistrationForm() {
         </View>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('LoginScreen')}
+          onPress={() => navigation.navigate('Home', { screen: 'PostsScreen' })}
         >
           <Text style={styles.signup}>Зареєструватися</Text>
         </Pressable>
