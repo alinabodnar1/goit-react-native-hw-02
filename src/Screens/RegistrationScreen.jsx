@@ -12,8 +12,11 @@ import {
   Keyboard,
 } from "react-native";
 import { commonStyles } from "../commonStyles";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function RegistrationScreen() {
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -37,7 +40,16 @@ export default function RegistrationScreen() {
               </View>
               <Text style={styles.title}>Реєстрація</Text>
               <RegistrationForm />
-              <Text style={styles.signin}>Вже є акаунт? Увійти</Text>
+
+              <Text style={styles.signin}>
+                Вже є акаунт?
+                <TouchableOpacity
+                  style={styles.signin}
+                  onPress={() => navigation.navigate("LoginScreen")}
+                >
+                  <Text>Увійти</Text>
+                </TouchableOpacity>
+              </Text>
             </View>
           </ImageBackground>
         </View>

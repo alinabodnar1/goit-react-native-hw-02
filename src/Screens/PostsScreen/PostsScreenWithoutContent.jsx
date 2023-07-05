@@ -2,11 +2,13 @@ import React from "react";
 import { Feather, EvilIcons, AntDesign } from "@expo/vector-icons";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { commonStyles } from "../../commonStyles";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 
-export default function PostsScreen() {
+export default function PostsScreenWithoutContent() {
+  const Tabs = createBottomTabNavigator();
   const navigation = useNavigation();
-  
+
   return (
     <View style={{ flex: 1 }}>
       <View style={commonStyles.header}>
@@ -22,33 +24,16 @@ export default function PostsScreen() {
             <Text style={styles.email}>email@example.com</Text>
           </View>
         </View>
-
-        <Image source={require("./img/publicationPhoto.jpg")} />
-        <Text style={commonStyles.publicationTitle}>Ліс</Text>
-
-        <View style={commonStyles.publicationInfo}>
-          <EvilIcons name="comment" size={24} color="#BDBDBD" />
-          <Text style={styles.commentsNumber}>0</Text>
-          <EvilIcons
-            name="location"
-            size={28}
-            style={commonStyles.locationIcon}
-          />
-          <Text style={commonStyles.location}>
-            Ivano-Frankivs'k Region, Ukraine
-          </Text>
-        </View>
-        <Image
-          style={styles.nextPublication}
-          source={require("./img/sunset.jpg")}
-        />
       </View>
       {/* tabNavigation */}
       <View style={commonStyles.tabNavigation}>
-        <Pressable onPress={() => navigation.navigate("PostsScreenWithoutContent")}>
-            <AntDesign name="appstore-o" size={24} color="#212121" />
+        <Pressable onPress={() => navigation.navigate("PostsScreen")}>
+          <AntDesign name="appstore-o" size={24} color="#212121" />
         </Pressable>
-        <Pressable style={commonStyles.plus} onPress={() => navigation.navigate("CreatePostsScreen")}>
+        <Pressable
+          style={commonStyles.plus}
+          onPress={() => navigation.navigate("CreatePostsScreen")}
+        >
           <AntDesign name="plus" size={20} color="#FFFFFF" />
         </Pressable>
         <Pressable onPress={() => navigation.navigate("ProfileScreen")}>

@@ -1,106 +1,55 @@
-import React,  { useState } from "react";
+import React, { useState } from "react";
 import { Pressable, TextInput, View, StyleSheet, Text } from "react-native";
 import { commonStyles } from "../commonStyles";
-import { Formik } from "formik";
 import { useNavigation } from "@react-navigation/native";
-import LoginScreen from './LoginScreen';
 
 export default function RegistrationForm() {
-  // const navigation = useNavigation();
-  // const [login, setLogin] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const signup = (LoginScreen) => {
-  //   console.log(login);
-  //   console.log(email);
-  //   console.log(password);
-  //   form.reset();
-    // navigation.navigate(LoginScreen);
-  // }
-  
-//   return (
-//     <View style={styles.container}>
-//       <form>
-//           <View>
-//             <TextInput
-//               style={styles.input}
-//               placeholder="Логін"
-//               value={login}
-//               onChangeText={setLogin}
-//             />
-//             <TextInput
-//               style={styles.input}
-//               placeholder="Адреса електронної пошти"
-//               value={email}
-//               onChangeText={setEmail}
-//             />
-//             <View>
-//               <TextInput
-//                 style={styles.input}
-//                 placeholder="Пароль"
-//                 value={password}
-//                 onChangeText={setPassword}
-//               />
-//               <Pressable style={styles.show}>
-//                 <Text style={styles.showText}>Показати</Text>
-//               </Pressable>
-//             </View>
+  const navigation = useNavigation();
 
-//             <Pressable style={styles.button}>
-//               <Text style={styles.signup} onPress={signup} >
-//                 Зареєструватися
-//               </Text>
-//             </Pressable>
-//           </View> 
-//       </form>
-//     </View>
-//   );
-// }
+  // const handleSubmit = (evt) => {
+  //   console.log(login, email, password);
+  //   setLogin("");
+  //   setEmail("");
+  //   setPassword("");
+  // };
+
   return (
     <View style={styles.container}>
-      <Formik
-        onSubmit={(values, action) => {
-          console.log(values);
-          action.resetForm();
-          navigation.navigate('LoginScreen');
-        }}
-        initialValues={{ login: "", email: "", password: "" }}
-      >
-        {(props) => (
-          <View>
-            <TextInput
-              style={styles.input}
-              placeholder="Логін"
-              value={props.values.login}
-              onChangeText={props.handleChange("login")}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Адреса електронної пошти"
-              value={props.values.email}
-              onChangeText={props.handleChange("email")}
-            />
-            <View>
-              <TextInput
-                style={styles.input}
-                placeholder="Пароль"
-                value={props.values.password}
-                onChangeText={props.handleChange("password")}
-              />
-              <Pressable style={styles.show}>
-                <Text style={styles.showText}>Показати</Text>
-              </Pressable>
-            </View>
-
-            <Pressable style={styles.button}>
-              <Text style={styles.signup} onPress={props.handleSubmit} >
-                Зареєструватися
-              </Text>
-            </Pressable>
-          </View>
-        )}
-      </Formik>
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Логін"
+          value={login}
+          onChangeText={setLogin}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Адреса електронної пошти"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <View>
+          <TextInput
+            style={styles.input}
+            placeholder="Пароль"
+            value={password}
+            onChangeText={setPassword}
+          />
+          <Pressable style={styles.show}>
+            <Text style={styles.showText}>Показати</Text>
+          </Pressable>
+        </View>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('LoginScreen')}
+        >
+          <Text style={styles.signup}>Зареєструватися</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

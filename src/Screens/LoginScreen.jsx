@@ -8,11 +8,16 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Button,
 } from "react-native";
 import Loginform from "./Loginform";
 import { commonStyles } from "../commonStyles";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function LoginScreen() {
+  const navigation = useNavigation();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -32,7 +37,14 @@ export default function LoginScreen() {
 
               <Text style={styles.noAccount}>
                 Немає акаунту?{" "}
-                <Text style={styles.signup}>Зареєструватися</Text>
+                <Text style={styles.signup}>
+                  <TouchableOpacity
+                    style={styles.signup}
+                    onPress={() => navigation.navigate("RegistrationScreen")}
+                  >
+                    <Text>Зареєструватися</Text>
+                  </TouchableOpacity>
+                </Text>
               </Text>
             </View>
           </ImageBackground>
