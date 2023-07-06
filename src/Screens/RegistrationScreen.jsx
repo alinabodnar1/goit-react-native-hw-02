@@ -48,7 +48,7 @@ export default function RegistrationScreen() {
                   style={styles.signin}
                   onPress={() => navigation.navigate("Login")}
                 >
-                  <Text>Увійти</Text>
+                  <Text style={styles.enter}>Увійти</Text>
                 </Pressable>
               </Text>
             </View>
@@ -87,5 +87,11 @@ const styles = StyleSheet.create({
     marginTop: 16,
     color: "#1B4371",
     fontFamily: "Roboto-Light",
+  },
+  enter: {
+    ...commonStyles.font,
+    marginTop: 3,
+    marginLeft: 5,
+    color: '#1B4371',
   },
 });

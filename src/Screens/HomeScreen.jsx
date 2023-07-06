@@ -1,7 +1,6 @@
 import React from "react";
-import { Pressable, Text, View } from "react-native";
-import { Feather, EvilIcons, AntDesign } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
+import {  Pressable, Text, View } from "react-native";
+import { Feather, AntDesign } from "@expo/vector-icons";
 import PostsScreen from "./PostsScreen/PostsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CreatePostsScreen from "./CreatePostsScreen/CreatePostsScreen";
@@ -14,17 +13,7 @@ export default function HomeScreen() {
   const navigation = useNavigation();
   return (
     <View style={{ flex: 1 }}>
-      {/* <View style={commonStyles.tabNavigation}>
-        <Pressable>
-          <AntDesign name="appstore-o" size={24} color="#212121" />
-        </Pressable>
-        <Pressable style={commonStyles.plus}>
-          <AntDesign name="plus" size={20} color="#FFFFFF" />
-        </Pressable>
-        <Pressable>
-          <Feather name="user" size={24} color="#212121" />
-        </Pressable>
-      </View> */}
+      <Text>Home page</Text>
       <View style={commonStyles.tabNavigation}>
         <Tabs.Navigator
           screenOptions={({ route }) => ({
@@ -76,4 +65,3 @@ export default function HomeScreen() {
     </View>
   );
 }
-

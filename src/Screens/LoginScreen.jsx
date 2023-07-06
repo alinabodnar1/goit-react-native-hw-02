@@ -42,7 +42,7 @@ export default function LoginScreen() {
                     style={styles.signup}
                     onPress={() => navigation.navigate("Registration")}
                   >
-                    <Text>Зареєструватися</Text>
+                    <Text style={styles.register}>Зареєструватися</Text>
                   </Pressable>
                 </Text>
               </Text>
@@ -74,5 +74,10 @@ const styles = StyleSheet.create({
   },
   signup: {
     textDecorationLine: "underline",
+  },
+  register: {
+    ...commonStyles.font,
+    padding: 2,
+    color: '#1B4371',
   },
 });
