@@ -5,7 +5,7 @@ import { commonStyles } from "../../commonStyles";
 import { useNavigation } from "@react-navigation/native";
 
 export default function PostsScreen() {
-  const navigation = useNavigation();
+  
   
   return (
     <View style={{ flex: 1 }}>
@@ -42,18 +42,6 @@ export default function PostsScreen() {
           style={styles.nextPublication}
           source={require("./img/sunset.jpg")}
         />
-      </View>
-      {/* tabNavigation */}
-      <View style={commonStyles.tabNavigation}>
-        <Pressable onPress={() => navigation.navigate("PostsScreenWithoutContent")}>
-            <AntDesign name="appstore-o" size={24} color="#212121" />
-        </Pressable>
-        <Pressable style={commonStyles.plus} onPress={() => navigation.navigate("CreatePostsScreen")}>
-          <AntDesign name="plus" size={20} color="#FFFFFF" />
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate("ProfileScreen")}>
-          <Feather name="user" size={24} color="#212121" />
-        </Pressable>
       </View>
     </View>
   );

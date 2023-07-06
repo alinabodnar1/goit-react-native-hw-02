@@ -73,13 +73,13 @@ export default function ProfileScreen() {
               </View>
             </View>
             {/* tabNavigation */}
-            <View style={commonStyles.tabNavigation}>
+            {/* <View style={commonStyles.tabNavigation}>
               <AntDesign name="appstore-o" size={24} color="#212121" />
               <Pressable style={commonStyles.plus}>
                 <Feather name="user" size={24} color="#FFFFFF" />
               </Pressable>
               <AntDesign name="plus" size={20} color="#212121" />
-            </View>
+            </View> */}
           </ImageBackground>
         </View>
       </TouchableWithoutFeedback>
