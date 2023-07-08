@@ -1,6 +1,6 @@
 import React from "react";
-import {  Pressable, Text, View } from "react-native";
-import { Feather, AntDesign } from "@expo/vector-icons";
+import { Text, View } from "react-native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import PostsScreen from "./PostsScreen/PostsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CreatePostsScreen from "./CreatePostsScreen/CreatePostsScreen";
@@ -16,34 +16,50 @@ export default function HomeScreen() {
       <Text>Home page</Text>
       <View style={commonStyles.tabNavigation}>
         <Tabs.Navigator
+          initialRouteName={"Home"}
           screenOptions={({ route }) => ({
-            tabBarIcon: () => {
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+
               if (route.name === "PostsScreen") {
-                return (
-                  <Pressable onPress={() => navigation.navigate("PostsScreen")}>
-                    <AntDesign name="appstore-o" size={24} color="#212121" />
-                  </Pressable>
-                );
+                iconName = focused ? 'grid' : 'grid-outline';
+                // return (
+                //   <Pressable onPress={() => navigation.navigate("PostsScreen")}>
+                //     <AntDesign name="appstore-o" size={24} color="#212121" />
+                //   </Pressable>
+                // );
               } else if (route.name === "CreatePostsScreen") {
-                return (
-                  <Pressable
-                    style={commonStyles.plus}
-                    onPress={() => navigation.navigate("CreatePostsScreen")}
-                  >
-                    <AntDesign name="plus" size={20} color="#FFFFFF" />
-                  </Pressable>
-                );
+                iconName = "ios-person";
+              
+                // return (
+                  // <Pressable
+                  //   style={commonStyles.plus}
+                  //   onPress={() => navigation.navigate("CreatePostsScreen")}
+                  // >
+                  //   <AntDesign name="plus" size={20} color="#FFFFFF" />
+                  // </Pressable>
+                // );
               } else if (route.name === "ProfileScreen") {
-                return (
-                  <Pressable
-                    onPress={() => navigation.navigate("ProfileScreen")}
-                  >
-                    <Feather name="user" size={24} color="#212121" />
-                  </Pressable>
-                );
+                iconName = focused ? 'ios-add' : 'ios-add-outline';
+                // return (
+                //   <Pressable
+                //     onPress={() => navigation.navigate("ProfileScreen")}
+                //   >
+                //     <Feather name="user" size={24} color="#212121" />
+                //   </Pressable>
+                // );
               }
+              return <Ionicons name={iconName} size={24} color={color} />
             },
           })}
+          tabBarOptions={{
+            activeTintColor: "#FF6C00",
+            inactiveTintColor: "gray",
+            showLabel: false,
+        style: { paddingTop: 20 },
+            activeBackgroundColor: '#FF6C00',
+            labelStyle: { borderRadius: 100 },
+          }}
         >
           <Tabs.Screen
             name="PostsScreen"

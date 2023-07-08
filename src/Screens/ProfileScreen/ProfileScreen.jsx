@@ -2,8 +2,6 @@ import React from "react";
 import {
   SimpleLineIcons,
   EvilIcons,
-  AntDesign,
-  Feather,
 } from "@expo/vector-icons";
 import background from "../../images/background.jpg";
 import {
@@ -14,7 +12,6 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Pressable,
   ImageBackground,
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
@@ -72,14 +69,6 @@ export default function ProfileScreen() {
                 </View>
               </View>
             </View>
-            {/* tabNavigation */}
-            {/* <View style={commonStyles.tabNavigation}>
-              <AntDesign name="appstore-o" size={24} color="#212121" />
-              <Pressable style={commonStyles.plus}>
-                <Feather name="user" size={24} color="#FFFFFF" />
-              </Pressable>
-              <AntDesign name="plus" size={20} color="#212121" />
-            </View> */}
           </ImageBackground>
         </View>
       </TouchableWithoutFeedback>
