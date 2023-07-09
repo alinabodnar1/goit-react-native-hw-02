@@ -1,12 +1,10 @@
 import React from "react";
-import { Feather, EvilIcons, AntDesign } from "@expo/vector-icons";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { EvilIcons } from "@expo/vector-icons";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { commonStyles } from "../../commonStyles";
-import { useNavigation } from "@react-navigation/native";
 
 export default function PostsScreen() {
-  
-  
+
   return (
     <View style={{ flex: 1 }}>
       <View style={commonStyles.header}>

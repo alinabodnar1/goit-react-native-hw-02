@@ -31,24 +31,19 @@ export default function App() {
         <MainStack.Screen
           name="Registration"
           component={RegistrationScreen}
-          options={{
-            headerShown: false}}
+          options={{headerShown: false }}
         />
         <MainStack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-        {/* <MainStack.Screen name="CreatePostsScreen" component={CreatePostsScreen} options={{ headerShown: false }}/>
-        <MainStack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }}/> */}
         <MainStack.Screen
           name="Home"
           component={HomeScreen}
           options={{ headerShown: false }}
         >
         </MainStack.Screen>
-        {/* <MainStack.Screen name="PostsWithoutContent" component={PostsScreenWithoutContent}></MainStack.Screen> */}
-        {/* <MainStack.Screen name="Comments" component={CommentsScreen} /> */}
       </MainStack.Navigator>
     </NavigationContainer>
   );
