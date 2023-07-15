@@ -12,17 +12,24 @@ import {
   TextInput,
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function CreatePostsScreen() {
+export default function CreatePostsScreen({ navigation: { goBack } }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1, backgroundColor: '#FFFFFF' }}
+      style={{ flex: 1, backgroundColor: "#FFFFFF" }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
           <View style={commonStyles.header}>
-            <Ionicons name="arrow-back" size={24} style={commonStyles.back} />
+            <TouchableOpacity
+              style={styles.back}
+              onPress={() => goBack()}
+            >
+              <Ionicons name="arrow-back" size={24} />
+            </TouchableOpacity>
+
             <Text style={commonStyles.headerTitle}>Створити публікацію</Text>
           </View>
           <View style={commonStyles.wrapper}>
@@ -55,6 +62,11 @@ export default function CreatePostsScreen() {
   );
 }
 const styles = StyleSheet.create({
+  back: {
+    position: "absolute",
+    top: 12,
+    left: 16,
+  },
   emptyPhoto: {
     marginTop: 32,
     marginBottom: 8,

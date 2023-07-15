@@ -19,9 +19,9 @@ export default function HomeScreen() {
           if (route.name === "Posts") {
             iconName = focused ? "grid" : "grid-outline";
           } else if (route.name === "CreatePosts") {
-            iconName = "ios-person";
+              iconName = focused ? "ios-add" : "ios-add-outline";
           } else if (route.name === "Profile") {
-            iconName = focused ? "ios-add" : "ios-add-outline";
+            iconName = "ios-person";
           }
           return <Ionicons name={iconName} size={24} color={color} />;
         },
@@ -36,7 +36,7 @@ export default function HomeScreen() {
           borderRadius: 100,
         },
         style: {
-          paddingTop: 10,
+          height: "70px",
         }, 
       }}
     >
@@ -48,8 +48,9 @@ export default function HomeScreen() {
       <Tabs.Screen
         name="CreatePosts"
         component={CreatePostsScreen}
-        options={{ headerShown: false }}
-      />
+        options={{ headerShown: false, tabBarStyle: { display: 'none' } }}
+        
+       />
       <Tabs.Screen
         name="Profile"
         component={ProfileScreen}
