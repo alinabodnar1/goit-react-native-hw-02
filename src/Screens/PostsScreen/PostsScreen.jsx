@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
   },
   nextPublication: {
     overflow: "hidden",
-    zIndex: 1,
+    zIndex: 10,
   },
 });

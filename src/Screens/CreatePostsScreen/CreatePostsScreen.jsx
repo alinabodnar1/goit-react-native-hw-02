@@ -17,7 +17,7 @@ export default function CreatePostsScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: '#FFFFFF' }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   button: {
     ...commonStyles.heroButton,
     marginTop: 32,
-    marginBottom: 120,
+    marginBottom: 100,
     backgroundColor: "#F6F6F6",
   },
   publish: {

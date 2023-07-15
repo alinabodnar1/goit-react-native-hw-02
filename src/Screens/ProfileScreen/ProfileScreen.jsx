@@ -78,9 +78,11 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   profileWrapper: {
     flex: 1,
+    height: 100,
     marginTop: 147,
     backgroundColor: "white",
-    borderRadius: "25px 25px 0px 0px",
+    borderTopLeftRadius: "25px",
+    borderTopRightRadius: "25px"
   },
   changeUser: {
     position: "absolute",
