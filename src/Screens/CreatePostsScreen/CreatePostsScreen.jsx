@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   button: {
     ...commonStyles.heroButton,
     marginTop: 32,
-    marginBottom: 100,
+    marginBottom: 120,
     backgroundColor: "#F6F6F6",
   },
   publish: {
