@@ -14,7 +14,6 @@ import {
 } from "react-native";
 import { commonStyles } from "../commonStyles";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function RegistrationScreen() {
   const navigation = useNavigation();

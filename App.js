@@ -7,11 +7,12 @@ import RegistrationScreen from "./src/Screens/RegistrationScreen";
 import LoginScreen from "./src/Screens/LoginScreen";
 import HomeScreen from "./src/Screens/HomeScreen";
 import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
-import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
-import ProfileScreen from "./src/Screens/ProfileScreen/ProfileScreen";
-import PostsScreen from "./src/Screens/PostsScreen/PostsScreen";
-import PostsScreenWithoutContent from "./src/Screens/PostsScreen/PostsScreenWithoutContent";
-import Location from "./src/Screens/location";
+// import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
+// import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
+// import ProfileScreen from "./src/Screens/ProfileScreen/ProfileScreen";
+// import PostsScreen from "./src/Screens/PostsScreen/PostsScreen";
+// import PostsScreenWithoutContent from "./src/Screens/PostsScreen/PostsScreenWithoutContent";
+// import Location from "./src/Screens/location";
 
 const MainStack = createStackNavigator();
 
@@ -44,11 +45,6 @@ export default function App() {
           component={HomeScreen}
           options={{ headerShown: false }}
         >
-          <MainStack.Screen
-          name="Location"
-          component={Location}
-          options={{ headerShown: false }}
-        ></MainStack.Screen>
         </MainStack.Screen>
       </MainStack.Navigator>
     </NavigationContainer>

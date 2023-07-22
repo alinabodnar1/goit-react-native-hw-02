@@ -1,5 +1,5 @@
 import React from "react";
-import { Ionicons, EvilIcons, AntDesign } from "@expo/vector-icons";
+import { EvilIcons, AntDesign } from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -12,9 +12,8 @@ import {
   TextInput,
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function CreatePostsScreen({ navigation: { goBack } }) {
+export default function CreatePostsScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -22,16 +21,6 @@ export default function CreatePostsScreen({ navigation: { goBack } }) {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
-          <View style={commonStyles.header}>
-            <TouchableOpacity
-              style={styles.back}
-              onPress={() => goBack()}
-            >
-              <Ionicons name="arrow-back" size={24} />
-            </TouchableOpacity>
-
-            <Text style={commonStyles.headerTitle}>Створити публікацію</Text>
-          </View>
           <View style={commonStyles.wrapper}>
             <Image
               style={styles.emptyPhoto}
@@ -105,7 +94,7 @@ const styles = StyleSheet.create({
   button: {
     ...commonStyles.heroButton,
     marginTop: 32,
-    marginBottom: 120,
+    marginBottom: 90,
     backgroundColor: "#F6F6F6",
   },
   publish: {

@@ -1,61 +1,114 @@
 import React from "react";
-import { Text, View } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostsScreen from "./PostsScreen/PostsScreen";
 import CreatePostsScreen from "./CreatePostsScreen/CreatePostsScreen";
 import ProfileScreen from "./ProfileScreen/ProfileScreen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
+const Tabs = createBottomTabNavigator();
 
 export default function HomeScreen() {
-  const Tabs = createBottomTabNavigator();
+  const navigation = useNavigation();
 
   return (
     <Tabs.Navigator
-      initialRouteName={"Posts"}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color }) => {
-          let iconName;
+      screenOptions={{
+        headerTitleAlign: "center",
+        tabBarShowLabel: false,
+        tabBarActiveBackgroundColor: "#FF6C00",
+        tabBarActiveTintColor: "#ffffff",
+        tabBarInactiveTintColor: "rgba(33, 33, 33, 0.8)",
 
-          if (route.name === "Posts") {
-            iconName = focused ? "grid" : "grid-outline";
-          } else if (route.name === "CreatePosts") {
-              iconName = focused ? "ios-add" : "ios-add-outline";
-          } else if (route.name === "Profile") {
-            iconName = "ios-person";
-          }
-          return <Ionicons name={iconName} size={24} color={color} />;
+        tabBarStyle: {
+          height: 83,
+          paddingTop: 10,
+          paddingBottom: 34,
+          paddingHorizontal: 80,
+          borderTopWidth: 1,
+          borderColor: "rgba(33, 33, 33, 0.8)",
         },
-      })}
-      tabBarOptions={{
-        activeTintColor: "#FFFFFF",
-        activeBackgroundColor: "#FF6C00",
-        inactiveBackgroundColor: "#FFFFFF",
-        inactiveTintColor: "gray",
-        showLabel: false,
-        tabStyle: {
-          borderRadius: 100,
+
+        tabBarItemStyle: {
+          borderRadius: 20,
         },
-        style: {
-          height: "70px",
-        }, 
       }}
     >
       <Tabs.Screen
-        name="Posts"
+        name="PostsScreen"
         component={PostsScreen}
-        options={{ headerShown: false }}
+        options={{
+          title: "Публікації",
+          headerStyle: {
+            backgroundColor: "#FFFFFF",
+          },
+          headerTitleStyle: {
+            fontWeight: 500,
+            fontSize: 17,
+            lineHeight: 22,
+          },
+          headerRight: () => (
+            <TouchableOpacity style={{ marginRight: 16, marginBottom: 10 }}>
+              <Feather
+                name="log-out"
+                size={24}
+                color="#BDBDBD"
+                onPress={() => navigation.navigate("Login")}
+              />
+            </TouchableOpacity>
+          ),
+          tabBarIcon: ({ color }) => (
+            <Feather name="grid" size={24} color={color} />
+          ),
+        }}
       />
       <Tabs.Screen
-        name="CreatePosts"
+        name="CreatePostsScreen"
         component={CreatePostsScreen}
-        options={{ headerShown: false, tabBarStyle: { display: 'none' } }}
-        
-       />
+        options={{
+          title: "Створити публікацію",
+          headerStyle: {
+            backgroundColor: "#FFFFFF",
+          },
+          headerTitleStyle: {
+            fontWeight: 500,
+            fontSize: 17,
+            lineHeight: 22,
+            borderTopWidth: 1,
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginLeft: 16, marginBottom: 10 }}
+              onPress={() => navigation.navigate("PostsScreen")}
+            >
+              <Feather name="arrow-left" size={24} color="#212121" />
+            </TouchableOpacity>
+          ),
+          tabBarIcon: ({ color }) => (
+            <Feather name="plus" size={24} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
-        name="Profile"
+        name="ProfileScreen"
         component={ProfileScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+
+          tabBarIcon: ({ color }) => (
+            <Feather name="user" size={24} color={color} />
+          ),
+        }}
       />
     </Tabs.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

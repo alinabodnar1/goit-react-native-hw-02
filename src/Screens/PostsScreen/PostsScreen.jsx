@@ -4,14 +4,8 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { commonStyles } from "../../commonStyles";
 
 export default function PostsScreen() {
-
   return (
-    <View style={{ flex: 1 }}>
-      <View style={commonStyles.header}>
-        <Text style={commonStyles.headerTitle}>Публікації</Text>
-        <Image style={styles.logout} source={require("./img/log-out.png")} />
-      </View>
-
+    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={commonStyles.wrapper}>
         <View style={styles.person}>
           <Image style={styles.avatar} source={require("./img/avatar.jpg")} />

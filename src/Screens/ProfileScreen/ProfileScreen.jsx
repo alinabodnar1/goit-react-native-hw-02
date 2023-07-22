@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  SimpleLineIcons,
-  EvilIcons,
-} from "@expo/vector-icons";
+import { SimpleLineIcons, EvilIcons } from "@expo/vector-icons";
 import background from "../../images/background.jpg";
 import {
   View,
@@ -15,8 +12,13 @@ import {
   ImageBackground,
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ProfileScreen() {
+  const navigation = useNavigation();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -38,13 +40,18 @@ export default function ProfileScreen() {
                 style={commonStyles.avatar}
                 source={require("./img/avatar.png")}
               />
-              <Image
+              <TouchableOpacity style={{ marginRight: 16, marginBottom: 10 }}>
+              <Feather
+                name="log-out"
                 style={styles.logout}
-                source={require("./img/log-out.png")}
+                size={24}
+                color="#BDBDBD"
+                onPress={() => navigation.navigate("Login")}
               />
+            </TouchableOpacity>
               <Text style={styles.title}>Natali Romanova</Text>
 
-              <View style={commonStyles.wrapper}>
+              <View style={{ paddingLeft: 24, paddingRight: 24 }}>
                 <Image source={require("./img/publicationPhoto.jpg")} />
                 <Text style={commonStyles.publicationTitle}>Ліс</Text>
 
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: 147,
     backgroundColor: "white",
     borderTopLeftRadius: "25px",
-    borderTopRightRadius: "25px"
+    borderTopRightRadius: "25px",
   },
   changeUser: {
     position: "absolute",

@@ -72,8 +72,8 @@ export const commonStyles = StyleSheet.create({
   // CreatePostsScreen
   header: {
     paddingTop: 44,
-    borderBottomWidth: 0.3,
-    borderBottomColor: "#212121",
+    borderTopWidth: 1,
+    borderTopColor: "#212121",
   },
   headerTitle: {
     fontSize: 16,
@@ -88,7 +88,7 @@ export const commonStyles = StyleSheet.create({
     left: 0,
   },
   // CommentsScreen
-  commentWrapper: {
+  commenter: {
     width: 300,
     marginBottom: 24,
     padding: 16,
@@ -110,6 +110,8 @@ export const commonStyles = StyleSheet.create({
   wrapper: {
     paddingLeft: 24,
     paddingRight: 24,
+    borderTopWidth: 1,
+    borderTopColor: "rgba(33, 33, 33, 0.8)",
   },
   // PostsScreen
   publicationTitle: {
