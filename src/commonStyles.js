@@ -108,6 +108,8 @@ export const commonStyles = StyleSheet.create({
     left: 16,
   },
   wrapper: {
+    paddingTop: 32,
+    paddingBottom: 34,
     paddingLeft: 24,
     paddingRight: 24,
     borderTopWidth: 1,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
-import { EvilIcons, AntDesign } from "@expo/vector-icons";
+import { EvilIcons, AntDesign, FontAwesome } from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -15,11 +15,19 @@ import {
   TextInput,
 } from "react-native";
 import { commonStyles } from "../../commonStyles";
+import { useNavigation } from "@react-navigation/native";
+import { nanoid } from "nanoid";
 
 export default function CreatePostsScreen() {
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [photo, setPhoto] = useState("");
+  const [comment, setComment] = useState("");
+  const [locationName, setLocationName] = useState("");
+  const [location, setLocation] = useState(null);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -33,19 +41,53 @@ export default function CreatePostsScreen() {
   if (hasPermission === false) {
     return <Text> No access to camera</Text>;
   }
+
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1, backgroundColor: "#FFFFFF" }}
-    >
+    <View style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
-          <View style={commonStyles.wrapper}>
-            {/* <Image
-              style={styles.emptyPhoto}
-              source={require("./img/empty-photo.jpg")}
-            /> */}
-            <Camera style={styles.emptyPhoto} type={type} ref={setCameraRef}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          // keyboardVerticalOffset={Platform.OS === "ios" ? -165 : -165}
+        >
+          {photo ? (
+            <Camera style={styles.camera} type={type} ref={setCameraRef}>
+              <View style={styles.photoView}>
+                <Image source={{ uri: photo }} style={styles.previewPhoto} />
+
+                <TouchableOpacity
+                  style={styles.flipContainer}
+                  onPress={() => {
+                    setType(
+                      type === Camera.Constants.Type.back
+                        ? Camera.Constants.Type.front
+                        : Camera.Constants.Type.back
+                    );
+                  }}
+                >
+                  <Text
+                    style={{ fontSize: 18, marginBottom: -10, color: "white" }}
+                  >
+                    Flip{" "}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={async () => {
+                    if (cameraRef) {
+                      const photo = await cameraRef.takePictureAsync();
+                      setPhoto(photo.uri);
+                      await MediaLibrary.createAssetAsync(photo.uri);
+                    }
+                  }}
+                >
+                  <View style={styles.takePhotoOut}>
+                    <FontAwesome name="camera" size={24} color="#BDBDBD" />
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </Camera>
+          ) : (
+            <Camera style={styles.camera} type={type} ref={setCameraRef}>
               <View style={styles.photoView}>
                 <TouchableOpacity
                   style={styles.flipContainer}
@@ -58,9 +100,8 @@ export default function CreatePostsScreen() {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 18, marginBottom: 10, color: "white" }}
+                    style={{ fontSize: 18, marginBottom: -10, color: "white" }}
                   >
-                    {" "}
                     Flip{" "}
                   </Text>
                 </TouchableOpacity>
@@ -68,42 +109,74 @@ export default function CreatePostsScreen() {
                   style={styles.button}
                   onPress={async () => {
                     if (cameraRef) {
-                      const { uri } = await cameraRef.takePictureAsync();
-                      await MediaLibrary.createAssetAsync(uri);
+                      const photo = await cameraRef.takePictureAsync();
+                      setPhoto(photo.uri);
+                      await MediaLibrary.createAssetAsync(photo.uri);
                     }
                   }}
                 >
                   <View style={styles.takePhotoOut}>
-                    <View style={styles.takePhotoInner}></View>
+                    <FontAwesome name="camera" size={24} color="#BDBDBD" />
                   </View>
                 </TouchableOpacity>
               </View>
             </Camera>
+          )}
+
+          {photo ? (
+            <Pressable>
+              <Text style={styles.loadPhoto}>Редагувати фото</Text>
+            </Pressable>
+          ) : (
             <Pressable>
               <Text style={styles.loadPhoto}>Завантажте фото</Text>
             </Pressable>
-            <TextInput style={styles.inputName} placeholder="Назва..." />
-            <View style={styles.locationWraper}>
-              <EvilIcons
-                name="location"
-                size={24}
-                style={styles.locationIcon}
-              />
-              <TextInput style={styles.location} placeholder="Місцевість..." />
-            </View>
-            <Pressable style={styles.button}>
-              <Text style={styles.publish}>Опубліковати</Text>
-            </Pressable>
-            <Pressable style={styles.delete}>
-              <AntDesign name="delete" size={24} color="#BDBDBD" />
-            </Pressable>
+          )}
+
+          <TextInput
+            style={styles.inputName}
+            placeholder="Назва..."
+            placeholderTextColor={"#BDBDBD"}
+            value={comment}
+            onChangeText={(value) => setComment(value)}
+          />
+          <View style={styles.locationWraper}>
+            <EvilIcons name="location" size={24} style={styles.locationIcon} />
+            <TextInput
+              style={styles.location}
+              placeholder="Місцевість..."
+              placeholderTextColor={"#BDBDBD"}
+              value={locationName}
+              onChangeText={(value) => setLocationName(value)}
+            />
           </View>
-        </View>
+
+          <Pressable style={styles.button}>
+            <Text
+              style={styles.publish}
+              onPress={() =>
+                navigation.navigate("MapScreen", {
+                  location: location.coords,
+                })
+              }
+            >
+              Опубліковати
+            </Text>
+          </Pressable>
+
+          <Pressable style={styles.delete}>
+            <AntDesign name="delete" size={24} color="#BDBDBD" />
+          </Pressable>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    ...commonStyles.wrapper,
+    flex: 1,
+  },
   back: {
     position: "absolute",
     top: 12,
