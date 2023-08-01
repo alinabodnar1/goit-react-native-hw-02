@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import * as Location from "expo-location";
 import { EvilIcons, AntDesign, FontAwesome } from "@expo/vector-icons";
 import {
   View,
@@ -29,6 +30,7 @@ export default function CreatePostsScreen() {
 
   const navigation = useNavigation();
 
+  // Camera
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -37,10 +39,23 @@ export default function CreatePostsScreen() {
       setHasPermission(status === "granted");
     })();
   }, []);
-
-  if (hasPermission === false) {
-    return <Text> No access to camera</Text>;
+  if (hasPermission === null) {
+    return <View />;
   }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  // Location
+  (async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      console.log("Permission to access location was denied");
+    }
+    const location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+  })();
+
 
   return (
     <View style={styles.container}>
@@ -177,17 +192,11 @@ const styles = StyleSheet.create({
     ...commonStyles.wrapper,
     flex: 1,
   },
-  back: {
-    position: "absolute",
-    top: 12,
-    left: 16,
-  },
-  emptyPhoto: {
-    marginTop: 32,
-    marginBottom: 8,
-    width: 343,
+  camera: {
+    width: "100%",
     height: 240,
     borderRadius: 8,
+    marginBottom: 8,
   },
   photoView: {
     flex: 1,
