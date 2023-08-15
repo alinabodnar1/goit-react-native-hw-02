@@ -56,6 +56,24 @@ export default function CreatePostsScreen() {
     setLocation(location);
   })();
 
+  // Taking and saving photo
+  const takeAndSavePhoto = async () => {
+    if (cameraRef) {
+      const photo = await cameraRef.takePictureAsync();
+      setPhoto(photo.uri);
+      await MediaLibrary.createAssetAsync(photo.uri);
+    }
+  };
+
+  // Submit form
+  const formSubmitHandler = () => {
+    const newPost = {
+      ...post,
+      id: nanoid(7),
+    };
+
+    navigation.navigate("PostsScreen");
+  };
 
   return (
     <View style={styles.container}>
@@ -87,13 +105,7 @@ export default function CreatePostsScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={async () => {
-                    if (cameraRef) {
-                      const photo = await cameraRef.takePictureAsync();
-                      setPhoto(photo.uri);
-                      await MediaLibrary.createAssetAsync(photo.uri);
-                    }
-                  }}
+                  onPress={takeAndSavePhoto}
                 >
                   <View style={styles.takePhotoOut}>
                     <FontAwesome name="camera" size={24} color="#BDBDBD" />
@@ -122,13 +134,7 @@ export default function CreatePostsScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={async () => {
-                    if (cameraRef) {
-                      const photo = await cameraRef.takePictureAsync();
-                      setPhoto(photo.uri);
-                      await MediaLibrary.createAssetAsync(photo.uri);
-                    }
-                  }}
+                  onPress={takeAndSavePhoto}
                 >
                   <View style={styles.takePhotoOut}>
                     <FontAwesome name="camera" size={24} color="#BDBDBD" />
@@ -156,7 +162,16 @@ export default function CreatePostsScreen() {
             onChangeText={(value) => setComment(value)}
           />
           <View style={styles.locationWraper}>
-            <EvilIcons name="location" size={24} style={styles.locationIcon} />
+            <EvilIcons
+              name="location"
+              size={24}
+              style={styles.locationIcon}
+              onPress={() =>
+                navigation.navigate("MapScreen", {
+                  location: location.coords,
+                })
+              }
+            />
             <TextInput
               style={styles.location}
               placeholder="Місцевість..."
@@ -166,14 +181,13 @@ export default function CreatePostsScreen() {
             />
           </View>
 
-          <Pressable style={styles.button}>
+          <Pressable
+            style={styles.button}
+            onPress={() => navigation.navigate("PostsScreen")}
+          >
             <Text
-              style={styles.publish}
-              onPress={() =>
-                navigation.navigate("MapScreen", {
-                  location: location.coords,
-                })
-              }
+              style={{ ...commonStyles.font, color: "#BDBDBD" }}
+              pressHandler={formSubmitHandler}
             >
               Опубліковати
             </Text>
@@ -263,10 +277,6 @@ const styles = StyleSheet.create({
     marginTop: 32,
     marginBottom: 90,
     backgroundColor: "#F6F6F6",
-  },
-  publish: {
-    ...commonStyles.font,
-    color: "#BDBDBD",
   },
   delete: {
     marginLeft: "auto",
