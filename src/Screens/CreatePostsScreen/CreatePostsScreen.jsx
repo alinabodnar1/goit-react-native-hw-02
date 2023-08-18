@@ -80,7 +80,7 @@ export default function CreatePostsScreen() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          // keyboardVerticalOffset={Platform.OS === "ios" ? -165 : -165}
+          keyboardVerticalOffset={Platform.OS === "ios" ? -165 : -165}
         >
           {photo ? (
             <Camera style={styles.camera} type={type} ref={setCameraRef}>
@@ -107,7 +107,7 @@ export default function CreatePostsScreen() {
                   style={styles.button}
                   onPress={takeAndSavePhoto}
                 >
-                  <View style={styles.takePhotoOut}>
+                  <View style={styles.takePhoto}>
                     <FontAwesome name="camera" size={24} color="#BDBDBD" />
                   </View>
                 </TouchableOpacity>
@@ -127,7 +127,7 @@ export default function CreatePostsScreen() {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 18, marginBottom: -10, color: "white" }}
+                    style={{ fontSize: 18, marginBottom: -30, color: "white" }}
                   >
                     Flip{" "}
                   </Text>
@@ -136,7 +136,7 @@ export default function CreatePostsScreen() {
                   style={styles.button}
                   onPress={takeAndSavePhoto}
                 >
-                  <View style={styles.takePhotoOut}>
+                  <View style={styles.takePhoto}>
                     <FontAwesome name="camera" size={24} color="#BDBDBD" />
                   </View>
                 </TouchableOpacity>
@@ -147,7 +147,7 @@ export default function CreatePostsScreen() {
           {photo ? (
             <Pressable>
               <Text style={styles.loadPhoto}>Редагувати фото</Text>
-            </Pressable>
+           </Pressable>
           ) : (
             <Pressable>
               <Text style={styles.loadPhoto}>Завантажте фото</Text>
@@ -182,11 +182,11 @@ export default function CreatePostsScreen() {
           </View>
 
           <Pressable
-            style={styles.button}
+            style={styles.post}
             onPress={() => navigation.navigate("PostsScreen")}
           >
             <Text
-              style={{ ...commonStyles.font, color: "#BDBDBD" }}
+              style={{ ...commonStyles.font, color: "white" }}
               pressHandler={formSubmitHandler}
             >
               Опубліковати
@@ -219,13 +219,9 @@ const styles = StyleSheet.create({
   },
 
   flipContainer: {
-    flex: 0.1,
     alignSelf: "flex-end",
   },
-
-  button: { alignSelf: "center" },
-
-  takePhotoOut: {
+  takePhoto: {
     borderWidth: 2,
     borderColor: "white",
     height: 50,
@@ -234,16 +230,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
+    alignSelf: "center",
   },
 
-  takePhotoInner: {
-    borderWidth: 2,
-    borderColor: "white",
-    height: 40,
-    width: 40,
-    backgroundColor: "white",
-    borderRadius: 50,
-  },
   loadPhoto: {
     ...commonStyles.font,
     textAlign: "left",
@@ -277,6 +266,17 @@ const styles = StyleSheet.create({
     marginTop: 32,
     marginBottom: 90,
     backgroundColor: "#F6F6F6",
+  },
+  post: {
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "center",
+    backgroundColor: "#FF6C00",
+    borderRadius: 100,
+    width: "100%",
+    height: 51,
+    marginBottom: 80,
+    marginTop: 16
   },
   delete: {
     marginLeft: "auto",

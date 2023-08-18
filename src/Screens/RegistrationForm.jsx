@@ -10,13 +10,6 @@ export default function RegistrationForm() {
 
   const navigation = useNavigation();
 
-  // const handleSubmit = (evt) => {
-  //   console.log(login, email, password);
-  //   setLogin("");
-  //   setEmail("");
-  //   setPassword("");
-  // };
-
   return (
     <View style={styles.container}>
       <View>

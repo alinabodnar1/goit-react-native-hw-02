@@ -1,11 +1,19 @@
 import React from "react";
 import { EvilIcons } from "@expo/vector-icons";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { commonStyles } from "../../commonStyles";
 
-export default function PostsScreen() {
+export default function PostsScreen({ route, navigation }) {
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }} route={route} navigation={navigation}>
+       <ScrollView
+        contentContainerStyle={{
+          gap: 32,
+          paddingBottom: 10,
+          paddingTop: 120,
+          paddingHorizontal: 16,
+        }}
+      >
       <View style={commonStyles.wrapper}>
         <View style={styles.person}>
           <Image style={styles.avatar} source={require("./img/avatar.jpg")} />
@@ -35,6 +43,7 @@ export default function PostsScreen() {
           source={require("./img/sunset.jpg")}
         />
       </View>
+      </ScrollView>
     </View>
   );
 }
@@ -42,13 +51,13 @@ const styles = StyleSheet.create({
   logout: {
     position: "absolute",
     bottom: 9,
-    right: 16,
+    // right: 16,
   },
   person: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 32,
-    marginBottom: 32,
+    // marginTop: 32,
+    // marginBottom: 32,
   },
   avatar: {
     width: 60,

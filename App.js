@@ -1,22 +1,18 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { useFonts } from "expo-font";
-import { NavigationContainer } from "@react-navigation/native";
+import { Feather } from "@expo/vector-icons";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import RegistrationScreen from "./src/Screens/RegistrationScreen";
 import LoginScreen from "./src/Screens/LoginScreen";
 import HomeScreen from "./src/Screens/HomeScreen";
-import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
-// import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
-// import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
-// import ProfileScreen from "./src/Screens/ProfileScreen/ProfileScreen";
-// import PostsScreen from "./src/Screens/PostsScreen/PostsScreen";
-// import PostsScreenWithoutContent from "./src/Screens/PostsScreen/PostsScreenWithoutContent";
-// import Location from "./src/Screens/location";
+import MapScreen from "./src/Screens/MapScreen";
+import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
 
 const MainStack = createStackNavigator();
 
-export default function App() {
+export default function App({ navigation }) {
   const [fontsLoaded] = useFonts({
     "Roboto-Light": require("./src/assets/fonts/Roboto-Light.ttf"),
   });
@@ -29,11 +25,12 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MainStack.Navigator>
-        <MainStack.Screen
+      {/* <MainStack.Navigator initialRouteName="Registration"> */}
+      <MainStack.Navigator >
+        {/* <MainStack.Screen
           name="Registration"
           component={RegistrationScreen}
-          options={{headerShown: false }}
+          options={{ headerShown: false }}
         />
         <MainStack.Screen
           name="Login"
@@ -44,8 +41,45 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{ headerShown: false }}
-        >
-        </MainStack.Screen>
+        />
+        <MainStack.Screen
+              name="MapScreen"
+              component={MapScreen}
+              options={{
+                headerShown: false,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    style={{ marginLeft: 16, marginBottom: 10 }}
+                    onPress={() => navigation.goBack()}
+                  >
+                    <Feather name="arrow-left" size={24} color="#212121" />
+                  </TouchableOpacity>
+                ),
+              }}
+            /> */}
+        <MainStack.Screen
+          name="CommentsScreen"
+          component={CommentsScreen}
+          options={{
+            title: "Коментарі",
+            headerStyle: {
+              backgroundColor: "#FFFFFF",
+            },
+            headerTitleStyle: {
+              fontWeight: 500,
+              fontSize: 17,
+              lineHeight: 22,
+            },
+            // headerLeft: () => (
+            //   <TouchableOpacity
+            //     style={{ marginLeft: 16, marginBottom: 10 }}
+            //     onPress={() => navigation.goBack()}
+            //   >
+            //     <Feather name="arrow-left" size={24} color="#212121" />
+            //   </TouchableOpacity>
+            // ),
+          }}
+        />
       </MainStack.Navigator>
     </NavigationContainer>
   );
