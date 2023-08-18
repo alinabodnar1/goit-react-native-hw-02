@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import PostsScreen from "./PostsScreen/PostsScreen";
-import CreatePostsScreen from "./CreatePostsScreen/CreatePostsScreen";
-import ProfileScreen from "./ProfileScreen/ProfileScreen";
+import PostsScreen from "./PostsScreen";
+import CreatePostsScreen from "./CreatePostsScreen";
+import ProfileScreen from "./ProfileScreen";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 

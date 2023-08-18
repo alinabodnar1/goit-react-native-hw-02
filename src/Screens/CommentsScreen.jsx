@@ -12,7 +12,7 @@ import {
   FlatList,
   TextInput,
 } from "react-native";
-import { commonStyles } from "../../commonStyles";
+import { commonStyles } from "../commonStyles";
 
 export default function CommentsScreen() {
   return (

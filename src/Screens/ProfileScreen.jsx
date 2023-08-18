@@ -11,7 +11,7 @@ import {
   Keyboard,
   ImageBackground,
 } from "react-native";
-import { commonStyles } from "../../commonStyles";
+import { commonStyles } from "../commonStyles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";

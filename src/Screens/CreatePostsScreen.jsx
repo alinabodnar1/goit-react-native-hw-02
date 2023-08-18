@@ -15,7 +15,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { commonStyles } from "../../commonStyles";
+import { commonStyles } from "../commonStyles";
 import { useNavigation } from "@react-navigation/native";
 import { nanoid } from "nanoid";
 
