@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 // import { selectUser, selectUID } from "../../redux/auth/authSelectors";
 import { selectPosts } from "../redux/posts/postsSelectors";
 import { fetchAllPosts } from "../redux/posts/postsOperations";
-import { StyleSheet } from "react-native";
 
 export default function PostsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
@@ -13,9 +12,13 @@ export default function PostsScreen ({ route, navigation }) {
   // const uid = useSelector(selectUID);
   const { posts } = useSelector(selectPosts);
 
-  useEffect(() => {
-    dispatch(fetchAllPosts(uid));
-  }, [uid]);
+ useEffect(() => {
+    dispatch(fetchAllPosts());
+  }, []);
+
+  // useEffect(() => {
+  //   dispatch(fetchAllPosts(uid));
+  // }, [uid]);
 
   // if (!user) return;
 
@@ -39,6 +42,8 @@ export default function PostsScreen ({ route, navigation }) {
           <View>
             <Text style={styles.userName}>{user.name}</Text>
             <Text style={styles.userEmail}>{user.email}</Text>
+             {/* <Text style={styles.userName}>Natali Romanova</Text>
+            <Text style={styles.userEmail}>email@example.com</Text> */}
           </View>
         </View>
         {posts.map((post) => (
@@ -50,6 +55,8 @@ export default function PostsScreen ({ route, navigation }) {
             route={route}
           />
         ))}
+        {/* <Text>Here is place for posts</Text> */}
+        
       </ScrollView>
     </View>
   );

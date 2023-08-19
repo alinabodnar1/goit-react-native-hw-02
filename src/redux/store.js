@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import rootReducer from "./rootReducer";
+// import rootReducer from "./rootReducer";
 // import { authReducer } from "./auth/authSlice";
 import { postsReducer } from "../redux/posts/postsSlice";
 
@@ -19,11 +19,11 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-// const reducer = persistReducer(persistConfig, authReducer);
+// const reducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, authReducer),
+    // auth: persistReducer(persistConfig, authReducer),
     posts: postsReducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -8,12 +8,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: 'aSXbAiTceuYFfGoS3WZqiETcr-Y9V5WUTTXMu9DkFlXg',
+  apiKey: 'SXbAiTceuYFfGoS3WZqiETcr-Y9V5WUTTXMu9DkFlXg',
   authDomain: 'goit-react-native-hw-app-deb9f.firebaseapp.com',
   databaseURL: 'https://goit-react-native-hw-app-deb9f.firebaseio.com',
   projectId: 'goit-react-native-hw-app-deb9f',
   storageBucket: 'goit-react-native-hw-app-deb9f.appspot.com',
-  messagingSenderId: 'sender-id',
+  messagingSenderId: '211117450308',
   appId: 'app-id',
   measurementId: 'G-measurement-id',
 };

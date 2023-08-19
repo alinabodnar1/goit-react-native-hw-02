@@ -8,12 +8,6 @@ export default function Loginform() {
   const [password, setPassword] = useState("");
 
   const navigation = useNavigation();
-  // const handleSubmit = (evt) => {
-  
-  //   console.log(email, password);
-  //   setEmail("");
-  //   setPassword("");
-  // };
 
   return (
     <View style={styles.container}>

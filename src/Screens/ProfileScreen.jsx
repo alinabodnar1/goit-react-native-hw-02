@@ -1,131 +1,76 @@
-import React from "react";
-import { SimpleLineIcons, EvilIcons } from "@expo/vector-icons";
-import background from "../../images/background.jpg";
+import Post from "../components/Post";
+import Avatar from "../components/Avatar";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPosts } from "../redux/posts/postsSelectors";
+// import { selectUser, selectUID } from "../../redux/auth/authSelectors";
+// import { logOut } from "../../redux/auth/authOperations";
+import { StyleSheet } from "react-native";
 import {
+  ImageBackground,
+  ScrollView,
   View,
   Text,
-  StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ImageBackground,
+  TouchableOpacity,
 } from "react-native";
-import { commonStyles } from "../commonStyles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 
-export default function ProfileScreen() {
-  const navigation = useNavigation();
+export default function ProfileScreen({ route, navigation }) {
+  const dispatch = useDispatch();
+  // const user = useSelector(selectUser);
+  // const uid = useSelector(selectUID);
+  const { posts } = useSelector(selectPosts);
+  const [isAvatarShown, setIsAvatarShown] = useState(true);
+  // const userPosts = posts.filter((post) => post.userId === uid);
+
+  // const logoutBtnPressHandler = () => {
+  //   dispatch(logOut());
+  // };
+
+  const avatarToggle = () => {
+    setIsAvatarShown((state) => !state);
+  };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
-          <ImageBackground
-            source={background}
-            resizeMode="cover"
-            style={commonStyles.image}
-          >
-            <View style={styles.profileWrapper}>
-              <Image
-                style={styles.changeUser}
-                source={require("./img/add.png")}
-              />
-              <Image
-                style={commonStyles.avatar}
-                source={require("./img/avatar.png")}
-              />
-              <TouchableOpacity style={{ marginRight: 16, marginBottom: 10 }}>
-              <Feather
-                name="log-out"
-                style={styles.logout}
-                size={24}
-                color="#BDBDBD"
-                onPress={() => navigation.navigate("Login")}
-              />
+    <>
+      <View
+        style={{ position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}
+      >
+        <ImageBackground
+          source={require("../images/background.jpg")}
+          style={{
+            flex: 1,
+          }}
+        />
+      </View>
+      <ScrollView
+        contentContainerStyle={[
+          scrollContainer,
+          userPosts.length < 2 && { flex: 1 },
+        ]}
+      >
+        <View style={[container, userPosts.length < 2 && { flex: 1 }]}>
+          <View style={avatarWrapper}>
+            <Avatar isAvatarShown={isAvatarShown} avatarToggle={avatarToggle} />
+            <TouchableOpacity
+              onPress={() => logoutBtnPressHandler()}
+              style={{ marginLeft: "auto", marginRight: 16, marginTop: 10 }}
+            >
+              <Feather name="log-out" size={24} color="#BDBDBD" />
             </TouchableOpacity>
-              <Text style={styles.title}>Natali Romanova</Text>
-
-              <View style={{ paddingLeft: 24, paddingRight: 24 }}>
-                <Image source={require("./img/publicationPhoto.jpg")} />
-                <Text style={commonStyles.publicationTitle}>Ліс</Text>
-
-                <View style={styles.publicationInfo}>
-                  <View style={commonStyles.row}>
-                    <Image source={require("./img/commentsIcon.png")} />
-                    <Text style={styles.commentsNumber}>8</Text>
-                  </View>
-
-                  <View style={styles.likes}>
-                    <SimpleLineIcons name="like" size={20} color="#FF6C00" />
-                    <Text style={styles.numberLikes}>153</Text>
-                  </View>
-                  <View style={commonStyles.row}>
-                    <EvilIcons
-                      name="location"
-                      size={28}
-                      style={commonStyles.locationIcon}
-                    />
-                    <Text style={styles.location}>Ukraine</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </ImageBackground>
+          </View>
+          <Text style={userName}>{user.name}</Text>
+          {userPosts.map((post) => (
+            <Post
+              key={post.id}
+              post={post}
+              commentsCount={post.comments.length}
+              navigation={navigation}
+              route={route}
+            />
+          ))}
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </ScrollView>
+    </>
   );
 }
-const styles = StyleSheet.create({
-  profileWrapper: {
-    flex: 1,
-    height: 100,
-    marginTop: 147,
-    backgroundColor: "white",
-    borderTopLeftRadius: "25px",
-    borderTopRightRadius: "25px",
-  },
-  changeUser: {
-    position: "absolute",
-    right: 126,
-    top: 20,
-    zIndex: 9,
-  },
-  logout: {
-    position: "absolute",
-    top: 22,
-    right: 16,
-  },
-  title: {
-    ...commonStyles.title,
-    marginTop: 92,
-    marginBottom: 32,
-  },
-  publicationInfo: {
-    ...commonStyles.row,
-    marginBottom: 32,
-  },
-  commentsNumber: {
-    ...commonStyles.commentsNumber,
-    color: "#212121",
-  },
-  likes: {
-    ...commonStyles.row,
-    marginLeft: 24,
-  },
-  numberLikes: {
-    ...commonStyles.commentsNumber,
-    marginLeft: 4,
-    marginRight: 140,
-    color: "#212121",
-  },
-  location: {
-    ...commonStyles.location,
-  },
-});

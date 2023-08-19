@@ -55,6 +55,10 @@ export default function CommentsScreen ({ route, navigation }) {
   ));
 
   return (
+    // <View>
+    //   Here is CommentsScreen
+    // </View>
+    
     <View route={route} navigation={navigation}>
       <ScrollView
         style={styles.container}

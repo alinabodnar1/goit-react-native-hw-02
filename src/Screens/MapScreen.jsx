@@ -5,6 +5,10 @@ import MapView, { Marker } from "react-native-maps";
 export default function MapScreen({ route, navigation }) {
   const {location} = route.params;
 
+  useEffect(() => {
+    navigation.setOptions({ tabBarStyle: { display: "none" } });
+  }, []);
+  
   return (
     <View style={styles.container}>
       <MapView

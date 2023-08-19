@@ -9,7 +9,7 @@ export default function CameraActiveBtn ({ pressHandler, isActive }) {
       style={[
         addImageBtn,
         isActive && {
-          backgroundColor: "rgba(255, 255, 255, 0.3)",
+          backgroundColor: "#BDBDBD",
         },
       ]}
     >
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 18,
-
     borderRadius: 30,
     backgroundColor: "#fff",
     zIndex: 1001,

@@ -12,7 +12,7 @@ import CommentsScreen from "./src/Screens/CommentsScreen";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./config";
-import { persistor, store } from "./redux/store";
+import { persistor, store } from "./src/redux/store";
 
 const MainStack = createStackNavigator();
 
