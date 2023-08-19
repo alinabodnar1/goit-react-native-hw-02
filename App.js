@@ -8,7 +8,7 @@ import RegistrationScreen from "./src/Screens/RegistrationScreen";
 import LoginScreen from "./src/Screens/LoginScreen";
 import HomeScreen from "./src/Screens/HomeScreen";
 import MapScreen from "./src/Screens/MapScreen";
-import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
+import CommentsScreen from "./src/Screens/CommentsScreen";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./config";

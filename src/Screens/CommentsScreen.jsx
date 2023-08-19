@@ -1,158 +1,133 @@
-import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+// import UpArrowIcon from "../../assets/icons/UpArrowIcon"; FontAwesome name="arrow-up"
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { FontAwesome } from "@expo/vector-icons";
+import ImagePost from "../components/ImagePost";
+import Comment from "../components/Comment";
+// import { selectUser, selectId } from "../../redux/auth/authSelectors";
+import { selectPosts } from "../redux/posts/postsSelectors";
+import { addComment } from "../redux/posts/postsOperations";
 import {
   View,
   Text,
-  StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Pressable,
-  FlatList,
   TextInput,
+  ScrollView,
+  TouchableOpacity,
+  Keyboard,
 } from "react-native";
-import { commonStyles } from "../commonStyles";
+import { StyleSheet } from "react-native";
+import { nanoid } from "nanoid";
 
-export default function CommentsScreen() {
+export default function CommentsScreen ({ route, navigation }) {
+  const dispatch = useDispatch();
+  const postId = route.params;
+  // const { name } = useSelector(selectUser);
+  // const uid = useSelector(selectUID);
+  const { posts } = useSelector(selectPosts);
+  const currentPost = posts.find((post) => post.id === postId);
+  const [message, setMessage] = useState("");
+
+  const pushBtnPressHandler = () => {
+    if (!message) {
+      alert("Ви не ввели коментар");
+      return;
+    }
+
+    const newComment = {
+      id: nanoid(7),
+      // author: name,
+      addedOn: Date.now(),
+      message,
+    };
+
+    Keyboard.dismiss();
+    // dispatch(addComment({ uid, postId, comment: newComment }));
+    dispatch(addComment({ postId, comment: newComment }));
+    setMessage("");
+  };
+
+  if (!currentPost) return;
+
+  const areComments = Boolean(currentPost.comments.length);
+
+  const elements = currentPost.comments.map((comment) => (
+    <Comment key={comment.id} comment={comment} />
+  ));
+
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1, backgroundColor: "white" }}>
-          {/* <View style={commonStyles.header}>
-            <Ionicons name="arrow-back" size={24} style={commonStyles.back} />
-            <Text style={commonStyles.headerTitle}>Коментарі</Text>
-          </View> */}
-          <View style={commonStyles.wrapper}>
-            <Image style={styles.photo} source={require("./img/sunset.jpg")} />
-
-            <FlatList
-              data={[
-                {
-                  avatar: "./avatar1.jpg",
-                  comment:
-                    "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!",
-                  dateAndTime: "09 червня, 2020 | 08:40",
-                },
-                {
-                  avatar: "./avatar2.jpg",
-                  comment:
-                    "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-                  dateAndTime: "09 червня, 2020 | 09:14",
-                },
-                {
-                  avatar: "./avatar1.jpg",
-                  comment: "Thank you! That was very helpful!",
-                  dateAndTime: "09 червня, 2020 | 09:20",
-                },
-              ]}
-              renderItem={({ item, index }) => {
-                if (index % 2 !== 0) {
-                  return (
-                    <View key={item.id} style={styles.item}>
-                      <Image
-                        style={styles.avatarRight}
-                        source={require("./img/avatar2.jpg")}
-                        // source={require(`${item.avatar}`)}
-                      />
-
-                      <View style={styles.commentWrapperRight}>
-                        <Text style={styles.commentText}>{item.comment}</Text>
-                        <Text style={styles.dateAndTimeLeft}>
-                          {item.dateAndTime}
-                        </Text>
-                      </View>
-                    </View>
-                  );
-                } else if (index % 2 === 0) {
-                  return (
-                    <View key={item.id} style={styles.item}>
-                      <Image
-                        style={styles.avatarLeft}
-                        source={require("./img/avatar1.jpg")}
-                      />
-
-                      <View style={styles.commentWrapperLeft}>
-                        <Text style={styles.commentText}>{item.comment}</Text>
-                        <Text style={styles.dateAndTimeRight}>
-                          {item.dateAndTime}
-                        </Text>
-                      </View>
-                    </View>
-                  );
-                }
-              }}
-            />
-
-            <Pressable style={styles.button}>
-              <TextInput style={styles.publish} placeholder="Коментувати..." />
-              <View style={styles.arrowUp}>
-                <Ionicons name="arrow-up" size={24} color="white" />
-              </View>
-            </Pressable>
-          </View>
+    <View route={route} navigation={navigation}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 32,
+          paddingBottom: 70,
+          paddingTop: 120,
+          paddingHorizontal: 16,
+        }}
+      >
+        <ImagePost source={currentPost.image} />
+        {!areComments && (
+          <Text style={{ color: "#BDBDBD" }}>
+            Під цим постом поки що немає коментарів
+          </Text>
+        )}
+        {areComments && elements}
+      </ScrollView>
+      <View style={styles.footer}>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            onChangeText={(value) => setMessage(value)}
+            style={styles.input}
+            placeholder="Коментувати..."
+            placeholderTextColor="#BDBDBD"
+            value={message}
+          />
+          <TouchableOpacity onPress={pushBtnPressHandler} style={styles.pushBtn}>
+            <FontAwesome name="arrow-up" size={24} color={"#BDBDBD"}/>
+          </TouchableOpacity>
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </View>
+    </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
-  photo: {
-    marginTop: 32,
-    marginBottom: 32,
-    borderRadius: 8,
+  container: {
+    flex: 1,
+    paddingBottom: 70,
   },
-  avatarLeft: {
-    ...commonStyles.zeroLeftPosition,
-  },
-  avatarRight: {
+  footer: {
     position: "absolute",
-    top: 0,
+    bottom: 0,
+    left: 0,
     right: 0,
+    paddingBottom: 16,
+    backgroundColor: "#fff",
   },
-  commentWrapperLeft: {
-    ...commonStyles.commentWrapper,
-    marginLeft: 36,
+  inputWrapper: {
+    position: "relative",
   },
-  commentWrapperRight: {
-    ...commonStyles.commentWrapper,
-    marginRight: 36,
-  },
-  commentText: {
-    color: "#212121",
-    fontSize: 13,
-  },
-  dateAndTimeRight: {
-    ...commonStyles.dateAndTime,
-    textAlign: "right",
-  },
-  dateAndTimeLeft: {
-    ...commonStyles.dateAndTime,
-    textAlign: "left",
-  },
-  button: {
-    ...commonStyles.heroButton,
-    marginTop: 0,
+  input: {
+    maxHeight: 50,
+    padding: 16,
     backgroundColor: "#F6F6F6",
-    borderWidth: 1,
     borderColor: "#E8E8E8",
-    padding: 8,
-  },
-  publish: {
-    ...commonStyles.font,
-    color: "#BDBDBD",
-    textAlign: "left",
-    paddingLeft: 8,
-  },
-  arrowUp: {
-    position: "absolute",
-    top: 5,
-    right: 8,
-    backgroundColor: "#FF6C00",
+    borderWidth: 1,
     borderRadius: 100,
-    padding: 7,
+  },
+  pushBtn: {
+    position: "absolute",
+    bottom: 8,
+    right: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    maxWidth: 34,
+    maxHeight: 34,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: "#FF6C00",
+    borderRadius: 20,
   },
 });
