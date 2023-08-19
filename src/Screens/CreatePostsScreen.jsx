@@ -71,7 +71,8 @@ export default function CreatePostsScreen() {
       ...post,
       id: nanoid(7),
     };
-
+    // dispatch(addPost({ uid, newPost }));
+    dispatch(addPost({  newPost }));
     navigation.navigate("PostsScreen");
   };
 

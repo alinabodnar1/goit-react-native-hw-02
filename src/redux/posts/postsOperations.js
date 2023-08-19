@@ -9,7 +9,7 @@ import {
   arrayUnion,
   increment,
 } from "firebase/firestore";
-import { db, storage } from "../../config";
+import { db, storage } from "../../../config";
 
 const fetchAllPosts = createAsyncThunk(
   "posts/fetchAllPosts",
@@ -19,7 +19,6 @@ const fetchAllPosts = createAsyncThunk(
       const querySnapshot = await getDocs(collection(db, "posts"));
       querySnapshot.forEach((doc) => {
         const post = { ...doc.data(), id: doc.id };
-
         posts.push(post);
       });
 
@@ -52,7 +51,6 @@ const addPost = createAsyncThunk(
       };
 
       setDoc(doc(db, "posts", post.id), post);
-
       return post;
     } catch (error) {
       console.log(error.message);

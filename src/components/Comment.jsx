@@ -1,5 +1,5 @@
 import { View, Text, Image } from "react-native";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import { selectUser } from "../../redux/auth/authSelectors";
 import { StyleSheet } from "react-native";
 
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
   },
   date: {
     paddingTop: 8,
-
     fontSize: 10,
     color: "#BDBDBD",
     textAlign: "right",

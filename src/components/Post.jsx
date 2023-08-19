@@ -5,7 +5,7 @@ import ImagePost from "../components/ImagePost";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import {  FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { addLike } from "../../redux/posts/postsOperations";
+import { addLike } from "../redux/posts/postsOperations";
 // import { selectUID } from "../../redux/auth/authSelectors";
 
 export default function Post  ({
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-
     marginTop: 8,
   },
   infoWrapper: {
