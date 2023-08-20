@@ -1,6 +1,6 @@
 import { View, Text, Image } from "react-native";
 import { useSelector } from "react-redux";
-// import { selectUser } from "../../redux/auth/authSelectors";
+
 import { StyleSheet } from "react-native";
 
 const padStart = (value) => {
@@ -36,8 +36,7 @@ export const transformDate = (dateNow) => {
 };
 
 export default function Comment ({ comment }) {
-  // const { name } = useSelector(selectUser);
-  // const isUserAuthor = comment.author === name ? true : false;
+
 
   return (
     <View style={[container, isUserAuthor && { flexDirection: "row-reverse" }]}>
@@ -49,16 +48,12 @@ export default function Comment ({ comment }) {
         }
         style={styles.avatar}
       />
-      <View
-        style={[
-          styles.messageWrapper,
-          // isUserAuthor && { borderTopRightRadius: 0, borderTopLeftRadius: 6 },
-        ]}
+      <View  style={styles.messageWrapper}
+    
       >
         <Text style={styles.message}>{comment.message}</Text>
-        <Text style={[styles.date, 
-          // isUserAuthor && { textAlign: "left" }
-          ]}>
+        <Text style={styles.date}>
+       
           {transformDate(comment.addedOn)}
         </Text>
       </View>

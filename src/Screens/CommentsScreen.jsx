@@ -1,10 +1,9 @@
-// import UpArrowIcon from "../../assets/icons/UpArrowIcon"; FontAwesome name="arrow-up"
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import ImagePost from "../components/ImagePost";
 import Comment from "../components/Comment";
-// import { selectUser, selectId } from "../../redux/auth/authSelectors";
+
 import { selectPosts } from "../redux/posts/postsSelectors";
 import { addComment } from "../redux/posts/postsOperations";
 import {
@@ -21,8 +20,7 @@ import { nanoid } from "nanoid";
 export default function CommentsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
   const postId = route.params;
-  // const { name } = useSelector(selectUser);
-  // const uid = useSelector(selectUID);
+
   const { posts } = useSelector(selectPosts);
   const currentPost = posts.find((post) => post.id === postId);
   const [message, setMessage] = useState("");
@@ -35,13 +33,13 @@ export default function CommentsScreen ({ route, navigation }) {
 
     const newComment = {
       id: nanoid(7),
-      // author: name,
+   
       addedOn: Date.now(),
       message,
     };
 
     Keyboard.dismiss();
-    // dispatch(addComment({ uid, postId, comment: newComment }));
+
     dispatch(addComment({ postId, comment: newComment }));
     setMessage("");
   };
@@ -55,10 +53,7 @@ export default function CommentsScreen ({ route, navigation }) {
   ));
 
   return (
-    // <View>
-    //   Here is CommentsScreen
-    // </View>
-    
+
     <View route={route} navigation={navigation}>
       <ScrollView
         style={styles.container}

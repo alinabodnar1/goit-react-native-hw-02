@@ -1,12 +1,8 @@
-// import MessageIcon from "../../assets/icons/MessageIcon";
-// import ThumbsUpIcon from "../../assets/icons/ThumbsUpIcon";  thumbs-up
-// import MapIcon from "../../assets/icons/MapIcon"; map-marker-alt
 import ImagePost from "../components/ImagePost";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import {  FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addLike } from "../redux/posts/postsOperations";
-// import { selectUID } from "../../redux/auth/authSelectors";
 
 export default function Post  ({
   post: { id, image, name, likesCount, location, comments },
@@ -14,7 +10,7 @@ export default function Post  ({
   route,
 }) {
   const dispatch = useDispatch();
-  // const uid = useSelector(selectUID);
+
 
   const messagePressHandler = (id) => {
     navigation.navigate("CommentsScreen", id);

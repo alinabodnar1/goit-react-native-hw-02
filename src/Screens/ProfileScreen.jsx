@@ -3,8 +3,7 @@ import Avatar from "../components/Avatar";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectPosts } from "../redux/posts/postsSelectors";
-// import { selectUser, selectUID } from "../../redux/auth/authSelectors";
-// import { logOut } from "../../redux/auth/authOperations";
+
 import { StyleSheet } from "react-native";
 import {
   ImageBackground,
@@ -17,15 +16,10 @@ import { Feather } from "@expo/vector-icons";
 
 export default function ProfileScreen({ route, navigation }) {
   const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
-  // const uid = useSelector(selectUID);
+
   const { posts } = useSelector(selectPosts);
   const [isAvatarShown, setIsAvatarShown] = useState(true);
-  // const userPosts = posts.filter((post) => post.userId === uid);
 
-  // const logoutBtnPressHandler = () => {
-  //   dispatch(logOut());
-  // };
 
   const avatarToggle = () => {
     setIsAvatarShown((state) => !state);
@@ -38,19 +32,12 @@ export default function ProfileScreen({ route, navigation }) {
       >
         <ImageBackground
           source={require("../images/background.jpg")}
-          style={{
-            flex: 1,
-          }}
+          style={{ flex: 1}}
         />
       </View>
-      <ScrollView
-        contentContainerStyle={[
-          scrollContainer,
-          userPosts.length < 2 && { flex: 1 },
-        ]}
-      >
-        <View style={[container, userPosts.length < 2 && { flex: 1 }]}>
-          <View style={avatarWrapper}>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.containe}>
+          <View style={styles.avatarWrapper}>
             <Avatar isAvatarShown={isAvatarShown} avatarToggle={avatarToggle} />
             <TouchableOpacity
               onPress={() => logoutBtnPressHandler()}
@@ -59,18 +46,44 @@ export default function ProfileScreen({ route, navigation }) {
               <Feather name="log-out" size={24} color="#BDBDBD" />
             </TouchableOpacity>
           </View>
-          <Text style={userName}>{user.name}</Text>
-          {userPosts.map((post) => (
+          <Text style={styles.userName}>{user.name}</Text>
+        
             <Post
-              key={post.id}
-              post={post}
-              commentsCount={post.comments.length}
               navigation={navigation}
               route={route}
             />
-          ))}
+     
         </View>
       </ScrollView>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    paddingTop: 147,
+  },
+  container: {
+    position: "relative",
+    flexDirection: "column",
+    gap: 32,
+    paddingTop: 92,
+    paddingBottom: 115,
+    backgroundColor: "#fff",
+    paddingHorizontal: 16,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  avatarWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    height: "100%",
+  },
+  userName: {
+    textAlign: "center",
+    fontFamily: "Roboto-Medium",
+    fontSize: 30,
+    lineHeight: 35,
+  },
+});

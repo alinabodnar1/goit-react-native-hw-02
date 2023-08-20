@@ -2,25 +2,20 @@ import { useEffect } from "react";
 import Post from "../components/Post";
 import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-// import { selectUser, selectUID } from "../../redux/auth/authSelectors";
+
 import { selectPosts } from "../redux/posts/postsSelectors";
 import { fetchAllPosts } from "../redux/posts/postsOperations";
 
 export default function PostsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
-  // const uid = useSelector(selectUID);
+
   const { posts } = useSelector(selectPosts);
 
  useEffect(() => {
     dispatch(fetchAllPosts());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(fetchAllPosts(uid));
-  // }, [uid]);
 
-  // if (!user) return;
 
   return (
     <View route={route} navigation={navigation}>
@@ -34,16 +29,16 @@ export default function PostsScreen ({ route, navigation }) {
       >
         <View style={styles.container}>
           <View style={styles.avatarWrapper}>
+            
             <Image
               style={styles.avatar}
               source={require("../images/icons/avatar.png")}
             />
           </View>
           <View>
-            <Text style={styles.userName}>{user.name}</Text>
-            <Text style={styles.userEmail}>{user.email}</Text>
-             {/* <Text style={styles.userName}>Natali Romanova</Text>
-            <Text style={styles.userEmail}>email@example.com</Text> */}
+        
+             <Text style={styles.userName}>Natali Romanova</Text>
+            <Text style={styles.userEmail}>email@example.com</Text>
           </View>
         </View>
         {posts.map((post) => (
@@ -55,8 +50,7 @@ export default function PostsScreen ({ route, navigation }) {
             route={route}
           />
         ))}
-        {/* <Text>Here is place for posts</Text> */}
-        
+
       </ScrollView>
     </View>
   );
