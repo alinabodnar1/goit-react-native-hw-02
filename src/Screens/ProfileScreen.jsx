@@ -46,7 +46,7 @@ export default function ProfileScreen({ route, navigation }) {
               <Feather name="log-out" size={24} color="#BDBDBD" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.userName}>{user.name}</Text>
+          <Text style={styles.userName}>Natali Romanova</Text>
         
             <Post
               navigation={navigation}

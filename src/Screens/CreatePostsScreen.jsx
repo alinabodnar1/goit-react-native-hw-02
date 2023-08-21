@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import { commonStyles } from "../commonStyles";
 import { useNavigation } from "@react-navigation/native";
+import { addPost } from "../redux/posts/postsOperations";
 import { nanoid } from "nanoid";
 
 export default function CreatePostsScreen() {

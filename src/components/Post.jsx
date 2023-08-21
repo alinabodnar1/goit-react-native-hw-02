@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import {  FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addLike } from "../redux/posts/postsOperations";
+import { nanoid } from "nanoid";
 
 export default function Post  ({
   post: { id, image, name, likesCount, location, comments },
@@ -36,7 +37,7 @@ export default function Post  ({
           </View>
           {route.name === "ProfileScreen" && (
             <View style={styles.infoWrapper}>
-              <TouchableOpacity onPress={() => dispatch(addLike({ uid, id }))}>
+              <TouchableOpacity>
                 <FontAwesome name="thumbs-up"  size={24} color="#BDBDBD"  likesCount={likesCount} />
               </TouchableOpacity>
               <Text style={[styles.counts, !likesCount && { color: "#BDBDBD" }]}>
@@ -46,7 +47,7 @@ export default function Post  ({
           )}
         </View>
         <View style={likesCount.infoWrapper}>
-          <TouchableOpacity onPress={() => mapPressHandler(id)}>
+          <TouchableOpacity onPress={() => mapPressHandler()}>
             <FontAwesome name="map-marker-alt" size={24} color="#BDBDBD" />
           </TouchableOpacity>
           <Text style={likesCount.locationText}>

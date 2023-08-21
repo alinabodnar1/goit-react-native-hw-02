@@ -10,7 +10,7 @@ import HomeScreen from "./src/Screens/HomeScreen";
 import MapScreen from "./src/Screens/MapScreen";
 import CommentsScreen from "./src/Screens/CommentsScreen";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+// import { PersistGate } from "redux-persist/integration/react";
 import "./config";
 import { persistor, store } from "./src/redux/store";
 
@@ -28,7 +28,7 @@ export default function App({ navigation }) {
 
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      {/* <PersistGate persistor={persistor}> */}
         <NavigationContainer>
           <MainStack.Navigator initialRouteName="Registration">
             {/* <MainStack.Navigator > */}
@@ -87,7 +87,7 @@ export default function App({ navigation }) {
             />
           </MainStack.Navigator>
         </NavigationContainer>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   );
 }

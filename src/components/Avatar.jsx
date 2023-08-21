@@ -15,7 +15,7 @@ export default function Avatar ({ isAvatarShown, avatarToggle }) {
         <TouchableOpacity
           onPress={() => avatarToggle()}
           style={{
-            ...avatarAddBtn,
+            ...styles.avatarAddBtn,
             borderColor: isAvatarShown ? "#E8E8E8" : "#FF6C00",
             transform: [{ rotate: isAvatarShown ? "45deg" : "0deg" }],
           }}

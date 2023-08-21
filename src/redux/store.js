@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  // persistReducer,
   persistStore,
   FLUSH,
   REHYDRATE,
@@ -30,3 +29,4 @@ export const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
+
