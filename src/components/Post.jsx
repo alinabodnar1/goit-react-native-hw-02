@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import {  FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addLike } from "../redux/posts/postsOperations";
-import { nanoid } from "nanoid";
+
 
 export default function Post  ({
   post: { id, image, name, likesCount, location, comments },

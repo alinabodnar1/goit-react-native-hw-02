@@ -31,7 +31,6 @@ export default function App({ navigation }) {
       {/* <PersistGate persistor={persistor}> */}
         <NavigationContainer>
           <MainStack.Navigator initialRouteName="Registration">
-            {/* <MainStack.Navigator > */}
             <MainStack.Screen
               name="Registration"
               component={RegistrationScreen}
@@ -75,14 +74,6 @@ export default function App({ navigation }) {
                   fontSize: 17,
                   lineHeight: 22,
                 },
-                // headerLeft: () => (
-                //   <TouchableOpacity
-                //     style={{ marginLeft: 16, marginBottom: 10 }}
-                //     onPress={() => navigation.goBack()}
-                //   >
-                //     <Feather name="arrow-left" size={24} color="#212121" />
-                //   </TouchableOpacity>
-                // ),
               }}
             />
           </MainStack.Navigator>
