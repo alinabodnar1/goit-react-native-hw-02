@@ -3,6 +3,8 @@ import Avatar from "../components/Avatar";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectPosts } from "../redux/posts/postsSelectors";
+import { selectUser, selectUserId } from "../redux/auth/authSelectors";
+import { logOut } from "../redux/auth/authOperations";
 
 import { StyleSheet } from "react-native";
 import {
@@ -16,10 +18,16 @@ import { Feather } from "@expo/vector-icons";
 
 export default function ProfileScreen({ route, navigation }) {
   const dispatch = useDispatch();
-
+  const user = useSelector(selectUser);
+  const userId = useSelector(selectUserId);
   const { posts } = useSelector(selectPosts);
   const [isAvatarShown, setIsAvatarShown] = useState(true);
 
+  const userPosts = posts.filter((post) => post.userId === userId);
+
+  const logoutBtnPressHandler = () => {
+    dispatch(logOut());
+  };
 
   const avatarToggle = () => {
     setIsAvatarShown((state) => !state);
@@ -32,11 +40,16 @@ export default function ProfileScreen({ route, navigation }) {
       >
         <ImageBackground
           source={require("../images/background.jpg")}
-          style={{ flex: 1}}
+          style={{ flex: 1 }}
         />
       </View>
-      <ScrollView style={styles.scrollContainer}>
-        <View style={styles.containe}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.scrollContainer,
+          userPosts.length < 2 && { flex: 1 },
+        ]}
+      >
+        <View style={[styles.container, userPosts.length < 2 && { flex: 1 }]}>
           <View style={styles.avatarWrapper}>
             <Avatar isAvatarShown={isAvatarShown} avatarToggle={avatarToggle} />
             <TouchableOpacity
@@ -46,13 +59,16 @@ export default function ProfileScreen({ route, navigation }) {
               <Feather name="log-out" size={24} color="#BDBDBD" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.userName}>Natali Romanova</Text>
-        
+          <Text style={styles.userName}>{user.name}</Text>
+          {userPosts.map((post) => (
             <Post
+              key={post.id}
+              post={post}
+              commentsCount={post.comments.length}
               navigation={navigation}
               route={route}
             />
-     
+          ))}
         </View>
       </ScrollView>
     </>

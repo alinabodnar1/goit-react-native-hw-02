@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import ImagePost from "../components/ImagePost";
 import Comment from "../components/Comment";
-
+import { selectUser, selectUserId } from "../redux/auth/authSelectors";
 import { selectPosts } from "../redux/posts/postsSelectors";
 import { addComment } from "../redux/posts/postsOperations";
 import {
@@ -20,6 +20,8 @@ import { nanoid } from "nanoid";
 export default function CommentsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
   const postId = route.params;
+  const { name } = useSelector(selectUser);
+  const userId = useSelector(selectUserId);
 
   const { posts } = useSelector(selectPosts);
   const currentPost = posts.find((post) => post.id === postId);
@@ -33,14 +35,13 @@ export default function CommentsScreen ({ route, navigation }) {
 
     const newComment = {
       id: nanoid(7),
-   
+      author: name,
       addedOn: Date.now(),
       message,
     };
 
     Keyboard.dismiss();
-
-    dispatch(addComment({ postId, comment: newComment }));
+    dispatch(addComment({ userId, postId, comment: newComment }));
     setMessage("");
   };
 

@@ -2,20 +2,21 @@ import { useEffect } from "react";
 import Post from "../components/Post";
 import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-
+import { selectUser, selectUserId } from "../redux/auth/authSelectors";
 import { selectPosts } from "../redux/posts/postsSelectors";
 import { fetchAllPosts } from "../redux/posts/postsOperations";
 
 export default function PostsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
-
+  const user = useSelector(selectUser);
+  const userId = useSelector(selectUserId);
   const { posts } = useSelector(selectPosts);
 
  useEffect(() => {
-    dispatch(fetchAllPosts());
-  }, []);
+    dispatch(fetchAllPosts(userId));
+  }, [userId]);
 
-
+  if (!user) return;
 
   return (
     <View route={route} navigation={navigation}>
@@ -37,8 +38,8 @@ export default function PostsScreen ({ route, navigation }) {
           </View>
           <View>
         
-             <Text style={styles.userName}>Natali Romanova</Text>
-            <Text style={styles.userEmail}>email@example.com</Text>
+             <Text style={styles.userName}>{user.name}</Text>
+            <Text style={styles.userEmail}>{user.email}</Text>
           </View>
         </View>
         {posts.map((post) => (

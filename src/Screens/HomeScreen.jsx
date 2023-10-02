@@ -6,6 +6,7 @@ import CreatePostsScreen from "./CreatePostsScreen";
 import ProfileScreen from "./ProfileScreen";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const Tabs = createBottomTabNavigator();
 
@@ -63,24 +64,27 @@ export default function HomeScreen() {
           ),
         }}
       />
-      <Tabs.Screen
+      <Tabs.Screen 
         name="CreatePostsScreen"
         component={CreatePostsScreen}
         options={{
           title: "Створити публікацію",
+          tabBarStyle: { display: 'none' }, 
           headerStyle: {
             backgroundColor: "#FFFFFF",
           },
+          
           headerTitleStyle: {
             fontWeight: 500,
             fontSize: 17,
             lineHeight: 22,
             borderTopWidth: 1,
           },
+          
           headerLeft: () => (
             <TouchableOpacity
               style={{ marginLeft: 16, marginBottom: 10 }}
-              onPress={() => navigation.navigate("PostsScreen")}
+              onPress={() => navigation.goBack()}
             >
               <Feather name="arrow-left" size={24} color="#212121" />
             </TouchableOpacity>
@@ -88,6 +92,7 @@ export default function HomeScreen() {
           tabBarIcon: ({ color }) => (
             <Feather name="plus" size={24} color={color} />
           ),
+          
         }}
       />
       <Tabs.Screen

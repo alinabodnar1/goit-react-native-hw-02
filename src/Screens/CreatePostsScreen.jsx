@@ -19,8 +19,13 @@ import { commonStyles } from "../commonStyles";
 import { useNavigation } from "@react-navigation/native";
 import { addPost } from "../redux/posts/postsOperations";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserId } from "../redux/auth/authSelectors";
 
 export default function CreatePostsScreen() {
+  const dispatch = useDispatch();
+  const userId = useSelector(selectUserId);
+
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -73,7 +78,7 @@ export default function CreatePostsScreen() {
       id: nanoid(7),
     };
 
-    dispatch(addPost({  newPost }));
+    dispatch(addPost({ userId, newPost }));
     navigation.navigate("PostsScreen");
   };
 
@@ -149,7 +154,7 @@ export default function CreatePostsScreen() {
           {photo ? (
             <Pressable>
               <Text style={styles.loadPhoto}>Редагувати фото</Text>
-           </Pressable>
+            </Pressable>
           ) : (
             <Pressable>
               <Text style={styles.loadPhoto}>Завантажте фото</Text>
@@ -278,7 +283,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 51,
     marginBottom: 50,
-    marginTop: 16
+    marginTop: 16,
   },
   delete: {
     marginLeft: "auto",

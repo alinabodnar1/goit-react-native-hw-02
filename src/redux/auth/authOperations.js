@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "../../config";
+import { auth } from "../../../config";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -31,7 +31,6 @@ const register = createAsyncThunk(
 
       return credentials;
     } catch (error) {
-      console.log("1: ", error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -52,7 +51,6 @@ const logIn = createAsyncThunk(
 
       return credentials;
     } catch (error) {
-      console.log("2: ", error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -64,7 +62,7 @@ const logOut = createAsyncThunk(
     try {
       await signOut(auth);
     } catch (error) {
-      console.log("3: ", error.message);
+
       return rejectWithValue(error.message);
     }
   }
@@ -83,7 +81,6 @@ const checkUser = () => async (dispatch, _) => {
       dispatch(logIn(credentials));
     });
   } catch (error) {
-    console.log("4: ", error.message);
     return rejectWithValue(error.message);
   }
 };

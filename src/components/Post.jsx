@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import {  FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addLike } from "../redux/posts/postsOperations";
-
+import { selectUserId } from "../redux/auth/authSelectors";
 
 export default function Post  ({
   post: { id, image, name, likesCount, location, comments },
@@ -11,7 +11,7 @@ export default function Post  ({
   route,
 }) {
   const dispatch = useDispatch();
-
+  const userId = useSelector(selectUserId);
 
   const messagePressHandler = (id) => {
     navigation.navigate("CommentsScreen", id);
@@ -37,7 +37,7 @@ export default function Post  ({
           </View>
           {route.name === "ProfileScreen" && (
             <View style={styles.infoWrapper}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => dispatch(addLike({ userId, id }))}>
                 <FontAwesome name="thumbs-up"  size={24} color="#BDBDBD"  likesCount={likesCount} />
               </TouchableOpacity>
               <Text style={[styles.counts, !likesCount && { color: "#BDBDBD" }]}>
