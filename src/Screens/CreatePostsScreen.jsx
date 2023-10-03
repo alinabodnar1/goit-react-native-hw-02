@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: "100%",
     height: 51,
-    marginBottom: 50,
+    marginBottom: 100,
     marginTop: 16,
   },
   delete: {

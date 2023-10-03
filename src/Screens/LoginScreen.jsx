@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { logIn } from "../redux/auth/authOperations";
+import { commonStyles } from "../commonStyles";
 import background from "../images/background.jpg";
 import {
   View,
@@ -9,13 +13,34 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Pressable,
+  TextInput,
 } from "react-native";
-import Loginform from "./Loginform";
-import { commonStyles } from "../commonStyles";
-import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isInputActive, setIsInputActive] = useState("");
+
+  const onLogin = () => {
+    dispatch(
+      logIn({
+        email,
+        password,
+      })
+    );
+
+    navigation.navigate("Home");
+  };
+
+  const onInputActive = (input) => {
+    setIsInputActive(input);
+  };
+  const onInputBlur = () => {
+    setIsInputActive("");
+  };
 
   return (
     <KeyboardAvoidingView
@@ -32,7 +57,42 @@ export default function LoginScreen() {
           >
             <View style={styles.loginform}>
               <Text style={styles.title}>Увійти</Text>
-              <Loginform />
+
+              <View style={styles.container}>
+                <View>
+                  <TextInput
+                    style={[
+                      styles.input,
+                      isInputActive === "email" && styles.inputActive,
+                    ]}
+                    placeholder="Адреса електронної пошти"
+                    value={email}
+                    onChangeText={setEmail}
+                    onFocus={() => onInputActive("email")}
+                    onBlur={onInputBlur}
+                  />
+                  <View>
+                    <TextInput
+                      style={[
+                        styles.input,
+                        isInputActive === "password" && styles.inputActive,
+                      ]}
+                      placeholder="Пароль"
+                      value={password}
+                      onChangeText={setPassword}
+                      onFocus={() => onInputActive("password")}
+                      onBlur={onInputBlur}
+                    />
+                    <Pressable style={styles.show}>
+                      <Text style={styles.showText}>Показати</Text>
+                    </Pressable>
+                  </View>
+
+                  <Pressable style={styles.button} onPress={onLogin}>
+                    <Text style={styles.signin}>Увійти</Text>
+                  </Pressable>
+                </View>
+              </View>
 
               <Text style={styles.noAccount}>
                 Немає акаунту?{" "}
@@ -77,6 +137,31 @@ const styles = StyleSheet.create({
   register: {
     ...commonStyles.font,
     padding: 2,
-    color: '#1B4371',
+    color: "#1B4371",
+  },
+
+  container: {
+    ...commonStyles.container,
+  },
+  input: {
+    ...commonStyles.input,
+  },
+  inputActive: {
+    ...commonStyles.inputActive,
+  },
+  show: {
+    ...commonStyles.showPosition,
+  },
+  showText: {
+    ...commonStyles.showText,
+    ...commonStyles.font,
+  },
+  button: {
+    ...commonStyles.heroButton,
+  },
+  signin: {
+    ...commonStyles.font,
+    color: "white",
+    fontFamily: "Roboto-Medium",
   },
 });

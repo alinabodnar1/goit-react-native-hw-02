@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { register } from "../redux/auth/authOperations";
+import { commonStyles } from "../commonStyles";
 import background from "../images/background.jpg";
 import { Ionicons } from "@expo/vector-icons";
-import RegistrationForm from "./RegistrationForm";
+// import RegistrationForm from "./RegistrationForm";
 import {
   View,
   ImageBackground,
@@ -11,12 +15,37 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Pressable,
+  TextInput,
 } from "react-native";
-import { commonStyles } from "../commonStyles";
-import { useNavigation } from "@react-navigation/native";
 
 export default function RegistrationScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isInputActive, setIsInputActive] = useState("");
+
+  const onRegistration = () => {
+    dispatch(
+      register({
+        login,
+        email,
+        password,
+      })
+    );
+
+    navigation.navigate("Home");
+  };
+
+  const onInputActive = (input) => {
+    setIsInputActive(input);
+  };
+  const onInputBlur = () => {
+    setIsInputActive("");
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -39,8 +68,61 @@ export default function RegistrationScreen() {
                 />
               </View>
               <Text style={styles.title}>Реєстрація</Text>
-              <RegistrationForm />
-
+              {/* <RegistrationForm /> */}
+              <View style={styles.container}>
+                <View>
+                  <TextInput
+                    // style={styles.input}
+                    style={[
+                      styles.input,
+                      isInputActive === "login" && styles.inputActive,
+                    ]}
+                    type="text"
+                    placeholder="Логін"
+                    value={login}
+                    onChangeText={setLogin}
+                    onFocus={() => onInputActive("login")}
+                    onBlur={onInputBlur}
+                  />
+                  <TextInput
+                    // style={styles.input}
+                    style={[
+                      styles.input,
+                      isInputActive === "email" && styles.inputActive,
+                    ]}
+                    type="email"
+                    placeholder="Адреса електронної пошти"
+                    value={email}
+                    onChangeText={setEmail}
+                    onFocus={() => onInputActive("email")}
+                    onBlur={onInputBlur}
+                  />
+                  <View>
+                    <TextInput
+                      // style={styles.input}
+                      style={[
+                        styles.input,
+                        isInputActive === "password" && styles.inputActive,
+                      ]}
+                      type="password"
+                      placeholder="Пароль"
+                      value={password}
+                      onChangeText={setPassword}
+                      onFocus={() => onInputActive("password")}
+                      onBlur={onInputBlur}
+                    />
+                    <Pressable style={styles.show}>
+                      <Text style={styles.showText}>Показати</Text>
+                    </Pressable>
+                  </View>
+                  <Pressable
+                    style={styles.button}
+                    onPress={onRegistration}
+                  >
+                    <Text style={styles.signup}>Зареєструватися</Text>
+                  </Pressable>
+                </View>
+              </View>
               <Text style={styles.signin}>
                 Вже є акаунт?
                 <Pressable
@@ -91,6 +173,31 @@ const styles = StyleSheet.create({
     ...commonStyles.font,
     marginTop: 3,
     marginLeft: 5,
-    color: '#1B4371',
+    color: "#1B4371",
+  },
+
+  container: {
+    ...commonStyles.container,
+  },
+  input: {
+    ...commonStyles.input,
+  },
+  inputActive: {
+    ...commonStyles.inputActive,
+  },
+  show: {
+    ...commonStyles.showPosition,
+  },
+  showText: {
+    ...commonStyles.showText,
+    ...commonStyles.font,
+  },
+  button: {
+    ...commonStyles.heroButton,
+  },
+  signup: {
+    ...commonStyles.font,
+    color: "white",
+    fontFamily: "Roboto-Medium",
   },
 });

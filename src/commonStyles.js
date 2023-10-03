@@ -60,6 +60,20 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     borderColor: "#E8E8E8",
   },
+  inputActive: {
+    borderWidth: 1,
+    borderColor: "#FF6C00",
+    borderRadius: 8,
+    borderStyle: "solid",
+    backgroundColor: "#FFFFFF",
+    padding: 15,
+    maxHeight: 50,
+    marginBottom: 16,
+    color: "#212121",
+    fontSize: 16,
+    lineHeight: 19,
+  },
+
   showPosition: {
     position: "absolute",
     right: 12,
