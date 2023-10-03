@@ -26,7 +26,7 @@ const register = createAsyncThunk(
 
       const credentials = {
         user: { name: response.user.displayName, email: response.user.email },
-        userId: response.user.userId,
+        uid: response.user.uid,
       };
 
       return credentials;
@@ -46,7 +46,7 @@ const logIn = createAsyncThunk(
 
       const credentials = {
         user: { name: response.user.displayName, email: response.user.email },
-        userId: response.user.userId,
+        uid: response.user.uid,
       };
 
       return credentials;
@@ -75,7 +75,7 @@ const checkUser = () => async (dispatch, _) => {
 
       const credentials = {
         user: { name: user.displayName, email: user.email },
-        userId: user.userId,
+        uid: user.uid,
       };
 
       dispatch(logIn(credentials));

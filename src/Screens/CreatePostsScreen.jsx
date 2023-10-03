@@ -24,7 +24,7 @@ import { selectUserId } from "../redux/auth/authSelectors";
 
 export default function CreatePostsScreen() {
   const dispatch = useDispatch();
-  const userId = useSelector(selectUserId);
+  const uid = useSelector(selectUserId);
 
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
@@ -78,7 +78,7 @@ export default function CreatePostsScreen() {
       id: nanoid(7),
     };
 
-    dispatch(addPost({ userId, newPost }));
+    dispatch(addPost({ uid, newPost }));
     navigation.navigate("PostsScreen");
   };
 

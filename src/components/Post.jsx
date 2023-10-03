@@ -11,7 +11,7 @@ export default function Post  ({
   route,
 }) {
   const dispatch = useDispatch();
-  const userId = useSelector(selectUserId);
+  const uid = useSelector(selectUserId);
 
   const messagePressHandler = (id) => {
     navigation.navigate("CommentsScreen", id);
@@ -37,7 +37,7 @@ export default function Post  ({
           </View>
           {route.name === "ProfileScreen" && (
             <View style={styles.infoWrapper}>
-              <TouchableOpacity onPress={() => dispatch(addLike({ userId, id }))}>
+              <TouchableOpacity onPress={() => dispatch(addLike({ uid, id }))}>
                 <FontAwesome name="thumbs-up"  size={24} color="#BDBDBD"  likesCount={likesCount} />
               </TouchableOpacity>
               <Text style={[styles.counts, !likesCount && { color: "#BDBDBD" }]}>

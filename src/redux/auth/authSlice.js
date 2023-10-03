@@ -5,24 +5,24 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: { name: "", email: "" },
-    userId: "",
+    uid: "",
     stateChange: false,
   },
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.userId = payload.userId;
+        state.uid = payload.uid;
         state.stateChange = true;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.userId = payload.userId;
+        state.uid = payload.uid;
         state.stateChange = true;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { name: "", email: "" };
-        state.userId = "";
+        state.uid = "";
         state.stateChange = false;
       });
   },

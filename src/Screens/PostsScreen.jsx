@@ -9,12 +9,12 @@ import { fetchAllPosts } from "../redux/posts/postsOperations";
 export default function PostsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const userId = useSelector(selectUserId);
+  const uid = useSelector(selectUserId);
   const { posts } = useSelector(selectPosts);
 
  useEffect(() => {
-    dispatch(fetchAllPosts(userId));
-  }, [userId]);
+    dispatch(fetchAllPosts(uid));
+  }, [uid]);
 
   if (!user) return;
 

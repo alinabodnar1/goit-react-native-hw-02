@@ -21,7 +21,7 @@ export default function CommentsScreen ({ route, navigation }) {
   const dispatch = useDispatch();
   const postId = route.params;
   const { name } = useSelector(selectUser);
-  const userId = useSelector(selectUserId);
+  const uid = useSelector(selectUserId);
 
   const { posts } = useSelector(selectPosts);
   const currentPost = posts.find((post) => post.id === postId);
@@ -41,7 +41,7 @@ export default function CommentsScreen ({ route, navigation }) {
     };
 
     Keyboard.dismiss();
-    dispatch(addComment({ userId, postId, comment: newComment }));
+    dispatch(addComment({ uid, postId, comment: newComment }));
     setMessage("");
   };
 

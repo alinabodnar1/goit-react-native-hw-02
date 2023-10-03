@@ -19,11 +19,11 @@ import { Feather } from "@expo/vector-icons";
 export default function ProfileScreen({ route, navigation }) {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const userId = useSelector(selectUserId);
+  const uid = useSelector(selectUserId);
   const { posts } = useSelector(selectPosts);
   const [isAvatarShown, setIsAvatarShown] = useState(true);
 
-  const userPosts = posts.filter((post) => post.userId === userId);
+  const userPosts = posts.filter((post) => post.userId === uid);
 
   const logoutBtnPressHandler = () => {
     dispatch(logOut());
